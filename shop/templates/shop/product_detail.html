@@ -1,0 +1,175 @@
+{% extends 'base/_main.html' %}
+{% block title %}جزییات محصول{% endblock %}
+
+{% block content %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li>جزئیات محصول</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    {% include 'base/_messages.html' %}
+
+    <div class="product_page_bg">
+        <div class="container">
+            <div class="product_details_wrapper mb-55">
+                <!--product details start-->
+                <div class="product_details">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6">
+                            <div class="product-details-tab">
+                                <div id="img-1" class="zoomWrapper single-zoom">
+                                    <a href="#">
+                                        <img id="zoom1" src="{{ product.gallery_set.first.image.url }}"
+                                             data-zoom-image="{{ product.gallery_set.first.image.url }}" alt="big-1">
+                                    </a>
+                                </div>
+                                <div class="single-zoom-thumb">
+                                    <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
+                                        {% for image in product.gallery_set.all %}
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update=""
+                                                   data-image="{{ image.image.url }}"
+                                                   data-zoom-image="{{ image.image.url }}">
+                                                    <img src="{{ image.image.url }}" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6">
+                            <div class="product_d_right">
+                                <h3>{{ product.name }}</h3>
+                                <div class="product_rating">
+                                    <ul>
+                                        {% for _ in ''|center:product.average_product_rating %}
+                                            <li><a href="#"><i
+                                                    class="ion-android-star"></i></a>
+                                            </li>
+                                        {% endfor %}
+                                        {% for _ in ''|center:product.get_average_blank_star %}
+                                            <li><a href="#"><i
+                                                    class="ion-android-star-outline"></i></a>
+                                            </li>
+                                        {% endfor %}
+                                        <li class="review"><a href="#">( {{ comments.count }} نقد و بررسی )</a></li>
+                                    </ul>
+                                </div>
+                                <div class="price_box">
+                                    <span class="old_price">{{ product.current_price }} تومان</span>
+                                    <span class="current_price">{{ product.old_price }} تومان</span>
+                                </div>
+                                <div class="product_desc">
+                                    <p>{{ product.short_description|linebreaks }}</p>
+                                </div>
+                                <div class="product_variant color">
+                                    <h3>گزینه های در دسترس</h3>
+                                    <label>رنگ</label>
+                                    <ul>
+                                        <li class="color1"><a href="#"></a></li>
+                                        <li class="color2"><a href="#"></a></li>
+                                        <li class="color3"><a href="#"></a></li>
+                                        <li class="color4"><a href="#"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product_variant quantity">
+                                    <label>تعداد</label>
+                                    <input min="1" max="100" value="1" type="number">
+                                    <button class="button" type="submit">افزودن به سبد</button>
+
+                                </div>
+                                <div class=" product_d_action">
+                                    <ul>
+                                        <li>
+                                            <form action="{% url 'shop:add_favorites_items' product.slug %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="submit" value="+ افزودن به علاقه‌مندی‌ها">
+                                            </form>
+                                            {#                                            <a href="#" title="افزودن به علاقه‌مندی‌ها">+ افزودن به علاقه‌مندی‌ها</a>#}
+                                        </li>
+                                        <li><a href="#" title="افزودن به علاقه‌مندی‌ها">+ مقایسه</a></li>
+                                    </ul>
+                                </div>
+                                <div class="product_meta">
+                                        <span>دسته: <a
+                                                href="
+                                                        {% url 'shop:product_list' %}?{{ product.category }}">{{ product.category }}</a></span>
+                                </div>
+                                <div class="priduct_social">
+                                    <ul>
+                                        <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i>
+                                            لایک</a></li>
+                                        <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i>
+                                            توییت</a>
+                                        </li>
+                                        <li><a class="pinterest" href="#" title="pinterest"><i
+                                                class="fa fa-pinterest"></i>
+                                            ذخیره</a></li>
+                                        <li><a class="google-plus" href="#" title="google +"><i
+                                                class="fa fa-google-plus"></i> اشتراک گذاری</a></li>
+                                        <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i>
+                                            لینکدین</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--product details end-->
+
+                <!--product info start-->
+                <div class="product_d_info">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product_d_inner">
+                                <div class="product_info_button">
+                                    <ul class="nav" role="tablist">
+                                        <li>
+                                            <a class="active" data-toggle="tab" href="#info" role="tab"
+                                               aria-controls="info"
+                                               aria-selected="false">توضیحات</a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
+                                               aria-selected="false">نقد و برررسی ({{ comments.count }})</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                        <div class="product_info_content">
+                                            <p>{{ product.description|linebreaks }}</p>
+                                        </div>
+                                    </div>
+                                    {% include 'shop/base/_productReview.html' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--product info end-->
+            </div>
+
+            {% include 'shop/base/_relatedProducts.html' %}
+            {% include 'shop/base/_best-sellingProducts.html' %}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

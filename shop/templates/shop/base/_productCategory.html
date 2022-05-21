@@ -1,0 +1,16 @@
+{% if child.child.all.count != 0 %}
+    <li class="widget_sub_categories"><a
+            href="javascript:void(0)">{{ child.title }}</a>
+        <ul class="widget_dropdown_categories"
+            style="display:none;">
+            {% for child in child.child.all %}
+                {% include 'shop/base/_productCategory.html' %}
+            {% endfor %}
+        </ul>
+    </li>
+
+{% else %}
+    <li class="widget_sub_categories"><a href="{% url 'shop:product_list' %}?category={{ child.title }}">{{ child.title }}</a></li>
+{% endif %}
+
+

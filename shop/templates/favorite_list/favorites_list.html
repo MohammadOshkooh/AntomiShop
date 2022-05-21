@@ -1,0 +1,101 @@
+{% extends 'base/_main.html' %}
+
+{% block title %}لیست علاقه مندی ها{% endblock %}
+
+{% block content %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li>لیست علاقه‌مندی‌ها</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--wishlist area start -->
+    <div class="wishlist_page_bg">
+        <div class="container">
+            <div class="wishlist_area">
+                <div class="wishlist_inner">
+                    {#                    <form method="post">#}
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table_desc wishlist">
+                                <div class="cart_page table-responsive">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th class="product_remove">حذف</th>
+                                            <th class="product_thumb">تصویر</th>
+                                            <th class="product_name">محصول</th>
+                                            <th class="product-price">قیمت</th>
+                                            <th class="product_quantity">وضعیت انبار</th>
+                                            <th class="product_total">افزودن به سبد</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for item in  favorite_items %}
+                                            {% for product in item.product.all %}
+                                                <tr>
+                                                    <td class="product_remove">
+                                                        <form action="{% url 'shop:delete_favorite_item' product.slug %}"
+                                                              method="post">
+                                                            {% csrf_token %}
+                                                            <input type="submit" value="×">
+                                                        </form>
+                                                    </td>
+                                                    <td class="product_thumb"><a
+                                                            href="{{ product.gallery_set.first.image.url }}"><img
+                                                            src="{{ product.gallery_set.first.image.url }}" alt=""></a>
+                                                    </td>
+                                                    <td class="product_name"><a href="#">{{ product.name }}</a></td>
+                                                    <td class="product-price">{{ product.current_price }}
+                                                        تومان
+                                                    </td>
+                                                    {% if product.availability %}
+                                                        <td class="product_quantity">موجود در انبار</td>
+                                                    {% else %}
+                                                        <td class="product_quantity">ناموجود در انبار</td>
+                                                    {% endif %}
+
+                                                    <td class="product_total"><a href="#">افزودن به سبد</a></td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {#                    </form>#}
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="wishlist_share">
+                            <h4>اشتراک گذاری در:</h4>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="#"><i class="fa fa-telegram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--wishlist area end -->
+
+{% endblock %}

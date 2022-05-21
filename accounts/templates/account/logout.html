@@ -1,0 +1,58 @@
+{% extends "base/_main.html" %}
+{% block title %}خروج{% endblock %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block content %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li><a href="{% url 'accounts:dashboard' %}">حساب کاربری</a></li>
+                            <li>خروج</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+ {% include 'base/_messages.html' %}
+    <!-- customer login start -->
+    <div class="login_page_bg">
+        <div class="container">
+            <div class="customer_login">
+                <div class="row">
+                    <!--login area start-->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="account_form login">
+                            <h2>{% trans 'خروج' %}</h2>
+                            <form method="post" action="{% url 'account_logout' %}">
+                                {% csrf_token %}
+                                {% if redirect_field_value %}
+                                    <input type="hidden" name="{{ redirect_field_name }}"
+                                           value="{{ redirect_field_value }}"/>
+                                {% endif %}
+                                <span>{% trans 'آیا میخواهید خارج شوید؟' %}</span>
+                                <button type="submit">{% trans "بله / خروج" %}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--login area start-->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- customer login end -->
+
+
+
+
+{% endblock %}

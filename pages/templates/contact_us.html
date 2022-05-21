@@ -1,0 +1,84 @@
+{% extends 'base/_main.html' %}
+{% block content %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li>تماس با ما</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <div class="contact_page_bg">
+        <!--contact map start-->
+        <div class="contact_map">
+            <div class="map-area">
+                <div id="googleMap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7915.525673176609!2d46.32542404246615!3d38.06389198146334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDAzJzUzLjgiTiA0NsKwMTknMzkuNCJF!5e0!3m2!1sen!2s!4v1545664085241"
+                            width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <!--contact map end-->
+        <div class="container">
+            <!--contact area start-->
+            <div class="contact_area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="contact_message content">
+                            <h3>تماس با ما</h3>
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
+                                فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای
+                                زیادی</p>
+                            <ul>
+                                <li><i class="fa fa-fw fa-fax"></i> تبریز، چهارراه آبرسان، فلکه دانشگاه، برج بلور، طبقه
+                                    678، واحد 85
+                                </li>
+                                <li><i class="fa fa-fw fa-phone"></i> <span class="ltr-text">(+98) 123 456 789</span>
+                                </li>
+                                <li><i class="fa fa-fw fa-envelope-o"></i> <a href="#">Info@example.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="contact_message form">
+                            <h3>با ما در میان بگذارید</h3>
+                            <form id="contact-form" method="POST" action="#">
+                                <p>
+                                    <label> نام شما (الزامی)</label>
+                                    <input name="name" placeholder="نام *" type="text" required>
+                                </p>
+                                <p>
+                                    <label> ایمیل شما (الزامی)</label>
+                                    <input name="email" placeholder="* ایمیل" type="email" dir="ltr" required>
+                                </p>
+                                <p>
+                                    <label> موضوع</label>
+                                    <input name="subject" placeholder="موضوع" type="text">
+                                </p>
+                                <div class="contact_textarea">
+                                    <label> پیام شما</label>
+                                    <textarea name="message" placeholder="پیام *" class="form-control2"
+                                              required></textarea>
+                                </div>
+                                <button type="submit">ارسال</button>
+                                <p class="form-messege"></p>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--contact area end-->
+        </div>
+    </div>
+{% endblock %}

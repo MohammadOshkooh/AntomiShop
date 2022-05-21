@@ -1,0 +1,7 @@
+{% for message in messages %}
+    {% if  message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <p class="alert-danger">{{ message }}</p>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+        <p class="alert-success">{{ message }}</p>
+    {% endif %}
+{% endfor %}

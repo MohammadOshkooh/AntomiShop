@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="fa" dir="rtl">
+
+<!-- => Designed by HesDesign @ https://market.radib.com <= antomi/antomi/index.html => از اینکه با خرید رسمی قالب در فایل مارکت رادیب، از ما حمایت می کنید سپاسگزاریم <=  09:12:43 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title> {% block title %} {% endblock %}</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <meta name="theme-color" content="#c40316">
+
+    <!-- CSS -->
+    {% include 'base/_headerReference.html' %}
+
+</head>
+
+<body>
+
+{% include 'base/_menu.html' %}
+
+{% include 'base/_header.html' %}
+
+{% block content %} {% endblock %}
+
+<!--footer area start-->
+{% include 'base/_footer.html' %}
+<!--footer area end-->
+
+<!-- JS -->
+{% include 'base/_jsReference.html' %}
+
+</body>
+
+</html>
