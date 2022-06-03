@@ -4,5 +4,5 @@ from accounts.views import Dashboard
 
 app_name = 'accounts'
 urlpatterns = [
-    path('dashboard/', Dashboard.as_view(), name='dashboard')
+    path('dashboard/<pk>/', Dashboard.as_view(), name='dashboard')
 ]

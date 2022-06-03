@@ -1,4 +1,5 @@
 {% extends 'base/_main.html' %}
+{% load crispy_forms_filters %}
 {% load i18n %}
 
 {% block title %}قالب Antomi | قالب فروشگاهی آنتومی{% endblock %}
@@ -6,7 +7,20 @@
 {% block content %}
 
     <!--breadcrumbs area start-->
-    {% include 'base/_breadcrumbsArea.html' %}
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li>حساب کاربری</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--breadcrumbs area end-->
 
 
@@ -26,7 +40,7 @@
                                     <li><a href="#address" data-toggle="tab" class="nav-link">آدرس ها</a></li>
                                     <li><a href="#account-details" data-toggle="tab" class="nav-link">جزئیات حساب</a>
                                     </li>
-                                    <li><a  href="{% url 'account_logout' %}" class="nav-link">خروج</a></li>
+                                    <li><a href="{% url 'account_logout' %}" class="nav-link">خروج</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -111,40 +125,18 @@
                                     </address>
                                 </div>
                                 <div class="tab-pane fade" id="account-details">
-                                    <h3>جزئیات حساب </h3>
                                     <div class="login">
                                         <div class="login_form_container">
                                             <div class="account_login_form">
-                                                <form action="#">
-                                                    <p>حساب کاربری دارید؟ <a href="#">وارد شوید!</a></p>
-                                                    <div class="input-radio">
-                                                        <span class="custom-radio"><label><input type="radio" value="1"
-                                                                                                 name="id_gender"> آقا</label></span>
-                                                        <span class="custom-radio"><label><input type="radio" value="1"
-                                                                                                 name="id_gender"> خانم</label></span>
-                                                    </div>
-                                                    <br>
-                                                    <label>نام</label>
-                                                    <input type="text" name="first-name">
-                                                    <label>نام خانوادگی</label>
-                                                    <input type="text" name="last-name">
-                                                    <label>ایمیل</label>
-                                                    <input type="text" name="email-name">
-                                                    <label>رمز عبور</label>
-                                                    <input type="password" name="user-password">
-                                                    <label>تاریخ تولد</label>
-                                                    <input type="text" placeholder="YYYY/MM/DD" value=""
-                                                           name="birthday">
-                                                    <span class="example">
-                                                      (مثال: 1397/05/26)
-                                                    </span>
-                                                    <br>
+                                                <form action="" method="post">
+                                                    {% csrf_token %}
+                                                    {{ form|crispy }}
                                                     <span class="custom_checkbox">
 														<label><input type="checkbox" value="1" name="optin"> دریافت پیشنهادات ویژه</label>
 													</span>
                                                     <br>
                                                     <span class="custom_checkbox">
-														<label><input type="checkbox" value="1" name="newsletter"> عضویت در خبرنامه ما<br><em>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و</em></label>
+														<label><input type="checkbox" value="1" name="newsletter"> عضویت در خبرنامه ما</label>
 													</span>
                                                     <div class="save_button primary_btn default_button">
                                                         <button type="submit">ذخیره</button>

@@ -50,9 +50,22 @@
 
 
     <!--breadcrumbs area start-->
-    {% include 'base/_breadcrumbsArea.html' %}
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li>ورود</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--breadcrumbs area end-->
- {% include 'base/_messages.html' %}
+    {% include 'base/include/messages.html' %}
     <!-- customer login start -->
     <div class="login_page_bg">
         <div class="container">
@@ -65,43 +78,24 @@
                             <form method="POST" action="{% url 'account_login' %}">
                                 {{ form|crispy }}
                                 {% csrf_token %}
-
-{#                                <p>#}
-{#                                    <label>نام کاربری یا ایمیل <span>*</span></label>#}
-{#                                    {{ form.login }}#}
-{#                                    <input type="text" dir="ltr">#}
-{#                                </p>#}
-{#                                <p>#}
-{#                                    <label>رمز عبور <span>*</span></label>#}
-{#                                    {{ form.password }}#}
-{#                                    <input type="password" dir="ltr">#}
-{#                                </p>#}
-                                <div class="login_submit">
+                                <p>
                                     <a href="{% url 'account_reset_password' %}">{% trans "رمز عبور خود را فراموش کرده اید؟" %}</a>
-{#                                    <label for="remember">#}
-{#                                        {{ form.remember }}#}
-{#                                        به خاطر سپاری#}
-{#                                    </label>#}
-
+                                </p>
+                                <a href="{% url 'account_signup' %}">{% trans "حساب کاربری ندارید؟" %}</a>
+                                <div class="login_submit">
                                     {% if redirect_field_value %}
                                         <input type="hidden" name="{{ redirect_field_name }}"
                                                value="{{ redirect_field_value }}"/>
                                     {% endif %}
                                     <button type="submit">{% trans "ورود" %}</button>
-{#                                    {% for key, values  in form.error_messages.items %}#}
-{#                                        <p> {{ values }}</p>#}
-{#                                    {% endfor %}#}
-{#                                    {{ form.error_messages }}#}
+                                </div>
+                            </form>
                         </div>
-
-
-                        </form>
                     </div>
+                    <!--login area start-->
                 </div>
-                <!--login area start-->
             </div>
         </div>
-    </div>
     </div>
 
     <!-- customer login end -->

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Gallery, Comment, ProductCategory, ProductTag, Favorite
+from .models import Product, Gallery, Comment, ProductCategory, Favorite
 
 
 class InlineGallery(admin.TabularInline):
@@ -32,6 +32,6 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 
-admin.site.register(ProductTag)
-
 admin.site.register(Favorite)
+
+

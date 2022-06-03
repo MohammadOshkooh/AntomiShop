@@ -10,9 +10,9 @@ services:
     ports:
       - '8000:8000'
     environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - "DJANGO_SECRET_KEY=django-insecure-)4oze!1-hfoc#)rma!lr$$58g!3+o!7b5vffy*-u)uxi4u#t2pb"
+      - "DJANGO_DEBUG=False"
+      - "DJANGO_ALLOWED_HOSTS=['localhost', '127.0.0.1']"
     depends_on:
       - db
 
@@ -20,8 +20,11 @@ services:
     image: postgres
     container_name: eshop_db
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=postgres
+      - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=posgres
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  postgres_data:

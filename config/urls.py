@@ -24,6 +24,10 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('products/', include('shop.urls', namespace='shop')),
     path('', include('pages.urls')),
+    path('', include('cart.urls', namespace='cart')),
+    path('blog/', include('blog.urls', namespace='blog')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "pages.views.page_not_found_view"

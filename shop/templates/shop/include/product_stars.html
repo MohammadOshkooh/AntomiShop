@@ -1,0 +1,10 @@
+{% for _ in ''|center:product.average_product_rating %}
+    <li><a href="#"><i
+            class="ion-android-star"></i></a>
+    </li>
+{% endfor %}
+{% for _ in ''|center:product.get_average_blank_star %}
+    <li><a href="#"><i
+            class="ion-android-star-outline"></i></a>
+    </li>
+{% endfor %}

@@ -1,0 +1,17 @@
+<!--product area start-->
+<section class="product_area related_products">
+    <div class="row">
+        <div class="col-12">
+            <div class="section_title">
+                <h2>محصولات مرتبط </h2>
+            </div>
+        </div>
+    </div>
+    <div class="product_carousel product_style product_column5 owl-carousel">
+        {% for product in related_products %}
+            {% include 'shop/include/single_product.html' %}
+        {% endfor %}
+    </div>
+
+</section>
+<!--product area end-->

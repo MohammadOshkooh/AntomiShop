@@ -1,0 +1,92 @@
+{% extends 'base/_main.html' %}
+{% block content %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li>بلاگ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <div class="blog_bg_area">
+        <div class="container">
+            <!--blog area start-->
+            <div class="blog_page_section">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12">
+                        <div class="blog_wrapper mb-60">
+                            <div class="blog_header">
+                                <h1>بلاگ</h1>
+                            </div>
+                            <div class="blog_wrapper_inner">
+                                {% for article in articles %}
+                                    <article class="single_blog">
+                                        <figure>
+                                            <div class="blog_thumb blog_thumb_active owl-carousel">
+                                                {% for gallery in article.gallery_set.all %}
+                                                    <div class="single_blog_thumb">
+                                                        <a href="#"><img src="{{ gallery.image.url }}" alt=""></a>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            {#                                        {{ article.file.url }}#}
+                                            {#                                            <div class="blog_thumb">#}
+                                            {#                                                <video src="{{ article.file }}"></video>#}
+                                            {#                                                <iframe src="{{ article.file }}"#}
+                                            {#                                                        allow="autoplay; encrypted-media" allowfullscreen></iframe>#}
+                                            {#                                            </div>#}
+                                            <figcaption class="blog_content">
+                                                <h4 class="post_title"><a
+                                                        href="{{ article.id }}">{{ article.title }}</a></h4>
+                                                <div class="blog_meta">
+                                                    <span class="author">ارسال توسط : <a
+                                                            href="#">{{ article.author }}</a> / </span>
+                                                    <span class="meta_date">ارسال شده در :  <a
+                                                            href="#">{{ article.created }}</a></span>
+                                                </div>
+                                                <div class="blog_desc">
+                                                    <p>{{ article.body|truncatechars:500|linebreaks }}</p>
+                                                </div>
+                                                <footer class="btn_more">
+                                                    <a href="{{ article.get_absolute_url }}"> بیشتر بخوانید</a>
+                                                </footer>
+                                            </figcaption>
+                                        </figure>
+                                    </article>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!--blog pagination area start-->
+                        <div class="blog_pagination">
+                            <div class="pagination">
+                                <ul>
+                                    <li class="current">1</li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li class="next"><a href="#">بعدی</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--blog pagination area end-->
+                    </div>
+                    <div class="col-lg-3 col-md-12">
+                        {% include 'include/blog_sidebar_widget.html' %}
+                    </div>
+                </div>
+            </div>
+            <!--blog area end-->
+
+
+        </div>
+    </div>
+{% endblock %}

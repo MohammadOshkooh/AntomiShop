@@ -19,7 +19,7 @@
     </div>
     <!--breadcrumbs area end-->
 
-    {% include 'base/_messages.html' %}
+    {% include 'base/include/messages.html' %}
 
     <div class="product_page_bg">
         <div class="container">
@@ -55,16 +55,7 @@
                                 <h3>{{ product.name }}</h3>
                                 <div class="product_rating">
                                     <ul>
-                                        {% for _ in ''|center:product.average_product_rating %}
-                                            <li><a href="#"><i
-                                                    class="ion-android-star"></i></a>
-                                            </li>
-                                        {% endfor %}
-                                        {% for _ in ''|center:product.get_average_blank_star %}
-                                            <li><a href="#"><i
-                                                    class="ion-android-star-outline"></i></a>
-                                            </li>
-                                        {% endfor %}
+                                        {% include 'shop/include/product_stars.html' %}
                                         <li class="review"><a href="#">( {{ comments.count }} نقد و بررسی )</a></li>
                                     </ul>
                                 </div>
@@ -86,15 +77,19 @@
                                     </ul>
                                 </div>
                                 <div class="product_variant quantity">
-                                    <label>تعداد</label>
-                                    <input min="1" max="100" value="1" type="number">
-                                    <button class="button" type="submit">افزودن به سبد</button>
-
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <label>تعداد</label>
+                                        {{ add_to_cart_form.quantity }}
+{#                                        <input min="1" max="100" value="1" type="number">#}
+                                        <button class="button" type="submit">افزودن به سبد</button>
+                                    </form>
                                 </div>
                                 <div class=" product_d_action">
                                     <ul>
                                         <li>
-                                            <form action="{% url 'shop:add_favorites_items' product.slug %}" method="post">
+                                            <form action="{% url 'shop:add_favorites_items' product.slug %}"
+                                                  method="post">
                                                 {% csrf_token %}
                                                 <input type="submit" value="+ افزودن به علاقه‌مندی‌ها">
                                             </form>
@@ -106,7 +101,7 @@
                                 <div class="product_meta">
                                         <span>دسته: <a
                                                 href="
-                                                        {% url 'shop:product_list' %}?{{ product.category }}">{{ product.category }}</a></span>
+                                                        {% url 'shop:product_list' %}?{{ product.category }}">{{ product.category.title}}</a></span>
                                 </div>
                                 <div class="priduct_social">
                                     <ul>
@@ -155,7 +150,7 @@
                                             <p>{{ product.description|linebreaks }}</p>
                                         </div>
                                     </div>
-                                    {% include 'shop/base/_productReview.html' %}
+                                    {% include 'shop/include/productReview.html' %}
                                 </div>
                             </div>
                         </div>
@@ -163,13 +158,7 @@
                 </div>
                 <!--product info end-->
             </div>
-
-            {% include 'shop/base/_relatedProducts.html' %}
-            {% include 'shop/base/_best-sellingProducts.html' %}
+            {% include 'shop/include/relatedProducts.html' %}
         </div>
     </div>
-
-
-
-
 {% endblock %}

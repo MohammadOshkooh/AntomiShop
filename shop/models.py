@@ -2,16 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 
-
-class ProductTag(models.Model):
-    title = models.CharField(max_length=200, verbose_name='برچسب')
-
-    class Meta:
-        verbose_name = 'برچسب'
-        verbose_name_plural = 'برچسب ها'
-
-    def __str__(self):
-        return self.title
+from tag.models import Tag
 
 
 class ProductCategory(models.Model):
@@ -22,6 +13,15 @@ class ProductCategory(models.Model):
     # slug = AutoSlugField(populate_from='title'.replace(' ', '-'), unique=True, allow_unicode=True,
     # verbose_name='اسلاگ')
     slug = models.SlugField()
+
+    def get_fullname(self):
+        fullname = self.title
+        current = self
+        while current.parent is not None:
+            fullname += '-'
+            fullname += current.parent.title
+            current = current.parent
+        return fullname
 
     def __str__(self):
         return f"{self.parent}-{self.title}"
@@ -37,6 +37,7 @@ class ProductCategory(models.Model):
             categories.append(current_category)
             current_category = current_category.parent
         return categories
+
 
     def all_children(self):
         children = []
@@ -65,7 +66,7 @@ class Product(models.Model):
     slug = models.SlugField()
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True,
                                  verbose_name='دسته بندی محصول')
-    tag = models.ManyToManyField(ProductTag, blank=True)
+    tag = models.ManyToManyField(Tag, blank=True)
 
     # favorites = models.ManyToManyField(get_user_model(), verbose_name='علاقه مندی ها')
 
@@ -92,6 +93,9 @@ class Product(models.Model):
     def get_average_blank_star(self):
         avg = self.average_product_rating()
         return 5 - avg
+
+    def get_discount(self):
+        return int(((self.old_price - self.current_price) / self.old_price) * 100)
 
 
 class Gallery(models.Model):
@@ -134,7 +138,7 @@ class Comment(models.Model):
     comment = models.TextField(verbose_name='نقد و بررسی شما')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     product_rating = models.IntegerField(choices=STATUS_CHOICES, default="", verbose_name='امتیاز شما')
-    is_active = models.BooleanField(default=False, verbose_name='فعال')
+    is_active = models.BooleanField(default=True, verbose_name='فعال')
 
     def get_blank_star(self):
         return 5 - self.product_rating

@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-
+from environs import Env
 from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.urls import reverse, reverse_lazy
@@ -23,14 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+env = Env()
+env.read_env()
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)4oze!1-hfoc#)rma!lr$58g!3+o!7b5vffy*-u)uxi4u#t2pb'
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = env("DJANGO_DEBUG")
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS")
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,6 +50,9 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'shop.apps.ShopConfig',
     'accounts.apps.AccountsConfig',
+    'cart.apps.CartConfig',
+    'blog.apps.BlogConfig',
+    'tag.apps.TagConfig',
 
     # Third-party
     'allauth',
@@ -81,6 +88,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'context_processors.context_processors.context_processors',  # Custom context processors
             ],
         },
     },
@@ -93,8 +101,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'PASSWORD': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
@@ -153,7 +165,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = reverse_lazy('accounts:dashboard')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('account_login')
 
 ACCOUNT_SESSION_REMEMBER = False
@@ -162,10 +174,16 @@ ACCOUNT_SESSION_REMEMBER = False
 ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_FORMS = {'login': 'accounts.forms.CustomLoginForm'}
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # ----------- end -----------
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mohammadoshkooh@gmail.com'
+EMAIL_HOST_PASSWORD = '957070152mohammad069'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+# ---
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

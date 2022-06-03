@@ -13,3 +13,9 @@ class AddFavoriteItemForm(forms.ModelForm):
     class Meta:
         model = Favorite
         fields = []
+
+
+class DeleteCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = []

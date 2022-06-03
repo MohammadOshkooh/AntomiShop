@@ -1,0 +1,62 @@
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import TemplateView, DetailView, ListView, FormView
+
+from tag.models import Tag
+from .forms import CommentForm
+from blog.models import Article, BlogComment, ArticleCategory
+from django.contrib import messages
+
+
+class BlogListView(ListView):
+    model = Article
+    template_name = 'blog.html'
+    context_object_name = 'articles'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(BlogListView, self).get_context_data()
+        context['comments'] = BlogComment.objects.all()
+        context['categories'] = ArticleCategory.objects.all()
+        context['tags'] = Tag.objects.all()
+        # contest['articles'] = Article.objects.all()
+        return context
+
+
+class BlogDetailView(DetailView, FormView):
+    form_class = CommentForm
+    model = Article
+    template_name = 'blog_details.html'
+    context_object_name = 'article'
+
+    def form_valid(self, form):
+        # get parent_id from hidden input
+        try:
+            parent_id = int(self.request.POST.get('parent_id'))
+        except:
+            parent_id = None
+        # if parent_id has been submitted get parent_obj id
+        if parent_id:
+            parent_object = BlogComment.objects.get(id=parent_id)
+            # if parent_object is exist
+            if parent_object:
+                # create reply comment
+                reply_comment = form.save(commit=False)
+                reply_comment.parent = parent_object
+        # normal comment
+        new_comment = form.save(commit=False)
+        new_comment.owner = self.request.user
+        article = Article.objects.filter(pk=self.kwargs.get('pk')).first()
+        new_comment.article = article
+        new_comment.save()
+        messages.success(self.request, 'کامنت با موفقست ثبت شد')
+        return redirect(article.get_absolute_url())
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogDetailView, self).get_context_data(**kwargs)
+        comments = BlogComment.objects.filter(article=kwargs['object'])
+        context['comments'] = comments
+        comment_main_parents = BlogComment.objects.filter(parent=None)
+        context['comment_main_parents'] = comment_main_parents
+        context['articles'] = Article.objects.all()
+        context['categories'] = ArticleCategory.objects.all()
+        context['tags'] = Tag.objects.all()
+        return context

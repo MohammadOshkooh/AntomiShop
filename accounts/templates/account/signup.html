@@ -11,9 +11,22 @@
 {% block content %}
 
     <!--breadcrumbs area start-->
-    {% include 'base/_breadcrumbsArea.html' %}
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'home' %}">خانه</a></li>
+                            <li>ثبت نام</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--breadcrumbs area end-->
- {% include 'base/_messages.html' %}
+ {% include 'base/include/messages.html' %}
     <!-- customer login start -->
     <div class="login_page_bg">
         <div class="container">
