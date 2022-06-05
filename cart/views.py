@@ -22,18 +22,21 @@ class CartView(LoginRequiredMixin, FormView):
     form_class = AddToCartForm
     template_name = 'cart.html'
 
+    # def get_form(self, form_class=None):
+    #     cart = Cart.objects.filter(owner=self.request.user, is_paid=False).first()
+    #     cart = cart.cart_items.first()
+    #     print(cart.quantity)
+    #     # cart_item = Item.objects.filter(cart=cart).first()
+    #     form = AddToCartForm(instance=cart, data=self.request.POST)
+    #     print('-----------------form :-------------------\n',form)
+    #     return form
+
     def get_context_data(self, **kwargs):
         context = super(CartView, self).get_context_data(**kwargs)
         context['update_form'] = context.get('form')
         cart = Cart.objects.filter(owner=self.request.user, is_paid=False).first()
         context['cart'] = cart
         return context
-
-    def get_form(self, form_class=None):
-        cart = Cart.objects.filter(owner=self.request.user, is_paid=False).first()
-        # cart_item = Item.objects.filter(cart=cart).first()
-        form = AddToCartForm(instance=cart, data=self.request.POST)
-        return form
 
     def form_valid(self, form):
         form.save()

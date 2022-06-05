@@ -20,12 +20,16 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('products/', include('shop.urls', namespace='shop')),
-    path('', include('pages.urls')),
-    path('', include('cart.urls', namespace='cart')),
-    path('blog/', include('blog.urls', namespace='blog')),
+    path('accounts/', include('allauth.urls')),  # django all-auth
+    path('accounts/', include('accounts.urls', namespace='accounts')),  # local app
+    path('products/', include('shop.urls', namespace='shop')),  # local app
+    path('blog/', include('blog.urls', namespace='blog')),  # local app
+
+    path('api-auth/', include('rest_framework.urls')),  # drf
+
+    path('', include('pages.urls')),  # local app
+    path('', include('cart.urls', namespace='cart')),  # local app
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -78,21 +78,6 @@ def product_detail(request, slug):
             else:
                 messages.error(request, 'برای ثبت نظر لطفا لاگین کنید')
 
-        # add to cart
-        add_to_cart_form = AddToCartForm(data=request.POST)
-        if add_to_cart_form.is_valid():
-            add_to_cart_form = add_to_cart_form.save(commit=False)
-            cart = Cart.objects.filter(owner=user, is_paid=False).first()
-            # check cart is exist
-            if cart is None or cart.is_paid is True:
-                cart = Cart.objects.create(owner=user)
-            add_to_cart_form.cart = cart
-            add_to_cart_form.product = product
-            add_to_cart_form.price = product.current_price
-            add_to_cart_form.save()
-            messages.success(request, 'محصول با موفقیت به سبد خرید اضافه شد')
-            return redirect(product.get_absolute_url(), product.slug)
-
         # update comment
         # try:
         #     comment_id = int(request.POST.get('comment_id'))

@@ -304,7 +304,8 @@
                                             </ul>
                                         </li>
                                     {% else %}
-                                        <li><a href="{% url 'account_login' %}?next={{ request.path }}">ورود</a>
+                                        <li><a href="
+                                            {% url 'account_login' %}{% if request.path != "/accounts/password/reset/key/done/" %}?next={{ request.path }}{% endif %}">ورود</a>
                                     {% endif %}
                                     <li><a class="active" href="{% url 'home' %}">خانه</a></li>
                                     <li class="mega_items"><a href="{% url 'shop:product_list' %}">فروشگاه</a></li>
