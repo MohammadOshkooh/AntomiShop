@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +26,9 @@ urlpatterns = [
     path('products/', include('shop.urls', namespace='shop')),  # local app
     path('blog/', include('blog.urls', namespace='blog')),  # local app
 
-    path('api-auth/', include('rest_framework.urls')),  # drf
+    # path('api-auth/', include('rest_framework.urls')),  # drf
+    # path('api-token-auth/', views.obtain_auth_token),   # token auth
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),   # dj-rest-auth
 
     path('', include('pages.urls')),  # local app
     path('', include('cart.urls', namespace='cart')),  # local app

@@ -62,6 +62,8 @@ INSTALLED_APPS = [
 
     # api
     'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
 ]
 
 MIDDLEWARE = [
@@ -198,3 +200,17 @@ MESSAGE_TAGS = {
 
 # custom user model
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# django rest framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ],
+}
+
+REST_USE_JWT = True  # enable JWT authentication in dj-rest-auth
+JWT_AUTH_COOKIE = 'access'
+JWT_AUTH_REFRESH_COOKIE = 'refresh'
