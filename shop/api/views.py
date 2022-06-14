@@ -1,9 +1,9 @@
 from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.viewsets import ModelViewSet
 
-from .serializers import ProductSerializers
+from .serializers import ProductSerializers, ProductCategorySerializer
 
-from shop.models import Product
+from shop.models import Product, ProductCategory
 
 
 # class ProductList(ListAPIView):
@@ -23,6 +23,18 @@ class ProductViewSet(ModelViewSet):
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
             permissions_class = [AllowAny]
+        else:
+            permissions_class = [IsAdminUser]
+        return [permission() for permission in permissions_class]
+
+
+class ProductCategoryViewSet(ModelViewSet):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            permission_class = [AllowAny]
         else:
             permissions_class = [IsAdminUser]
         return [permission() for permission in permissions_class]
