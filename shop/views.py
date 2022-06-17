@@ -17,6 +17,11 @@ class ProductList(ListView):
     context_object_name = 'products'
     paginate_by = 16
 
+    def __init__(self):
+        super().__init__()
+        self.max_range = None
+        self.min_range = None
+
     def get_queryset(self):
         queryset = Product.objects.filter(availability=True)
 
@@ -35,13 +40,11 @@ class ProductList(ListView):
             queryset = queryset.filter(tag__title=tag)
 
         # filter price
-        # price_min = self.request.GET.get('price_min')
-        # price_max = self.request.GET.get('price_max')
-        # if price_min is not None and price_max is not None:
-        #     print('---------------------not none price filter ----------------')
-        #     queryset = queryset.filter(current_price__range=range(0,1000))
-        #     # queryset = queryset.filter(current_price__range=range(int(price_min), int(price_max)))
-        #     print(range(int(price_min), int(price_max)))
+        self.min_range = self.request.GET.get('price_min')
+        self.max_range = self.request.GET.get('price_max')
+
+        if self.min_range is not None:
+            queryset = queryset.filter(current_price__range=[int(self.min_range), int(self.max_range)]).order_by('current_price')
 
         return queryset
 
@@ -49,6 +52,14 @@ class ProductList(ListView):
         context = super(ProductList, self).get_context_data()
         context['categories'] = ProductCategory.objects.all()
         context['tags'] = Tag.objects.all()
+
+        if self.min_range is not None:
+            context['min_range'] = self.min_range
+            context['max_range'] = self.max_range
+        else:
+            context['min_range'] = 70000
+            context['max_range'] = 100000
+
         return context
 
 
