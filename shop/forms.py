@@ -19,3 +19,7 @@ class DeleteCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = []
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'جستجوی محصول ...'}), max_length=100)

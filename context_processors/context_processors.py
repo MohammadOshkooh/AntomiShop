@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 
 from cart.forms import AddToCartForm
 from cart.models import Cart
+from shop.forms import SearchForm
 from shop.models import Favorite
 
 
@@ -35,6 +36,7 @@ def context_processors(request):
             'cart': cart,
             'favorite_list': favorite_list,
             'add_to_cart_form': add_to_cart_form,
+            'search_form': SearchForm(),
         }
     return {
 

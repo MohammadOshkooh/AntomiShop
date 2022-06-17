@@ -25,10 +25,24 @@ class ProductList(ListView):
     def get_queryset(self):
         queryset = Product.objects.filter(availability=True)
 
+        # search
+
+        search = self.request.GET.get('search')
+        select = self.request.GET.get('select')
+
+        if search is not None:
+            search.replace('+', ' ')
+            queryset = Product.objects.filter(name__icontains=search)
+            select.replace('+', ' ')
+            if select == 'all':
+                select = None
+                
         # category filter
         category = self.request.GET.get('category')
 
-        if category is not None:
+        if category is not None or select is not None:
+            if category is None:
+                category = select
             new_queryset = []
             for product in queryset:
                 if category in product.category.get_fullname():
@@ -44,7 +58,8 @@ class ProductList(ListView):
         self.max_range = self.request.GET.get('price_max')
 
         if self.min_range is not None:
-            queryset = queryset.filter(current_price__range=[int(self.min_range), int(self.max_range)]).order_by('current_price')
+            queryset = queryset.filter(current_price__range=[int(self.min_range), int(self.max_range)]).order_by(
+                'current_price')
 
         return queryset
 

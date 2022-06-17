@@ -1,7 +1,7 @@
 <!--header area start-->
 {% load static %}
 {% load product_tag %}
-{% get_main_categories_products as categories_main_patent %}
+{% get_main_categories_products as categories_main_parent %}
 <header>
     <div class="main_header header_four m-0">
         <div class="container">
@@ -38,17 +38,17 @@
                     </div>
                     <div class="column2 col-lg-6 col-md-12">
                         <div class="search_container">
-                            <form action="#">
+                            <form action="{% url 'shop:product_list' %}" method="get">
                                 <div class="hover_category">
                                     <select class="select_option" name="select" id="categori2">
-                                        <option selected value="1">همه دسته ها</option>
+                                        <option selected value="all">همه دسته ها</option>
                                         {% for category in categories_main_parent %}
-                                            <option value="{{ forloop.counter }}">{{ category.title }}</option>
+                                            <option value="{{ category.title }}">{{ category.title }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
                                 <div class="search_box">
-                                    <input placeholder="جستجوی محصول ..." type="text">
+                                    {{ search_form.search }}
                                     <button type="submit">جستجو</button>
                                 </div>
                             </form>
@@ -305,6 +305,7 @@
                                         </li>
                                     {% else %}
                                         <li><a href="
+
                                             {% url 'account_login' %}{% if request.path != "/accounts/password/reset/key/done/" %}?next={{ request.path }}{% endif %}">ورود</a>
                                     {% endif %}
                                     <li><a class="active" href="{% url 'home' %}">خانه</a></li>
