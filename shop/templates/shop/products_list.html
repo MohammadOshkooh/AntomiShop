@@ -130,6 +130,8 @@
                             <div class="col-lg-3 col-md-4 col-12 ">
                                 {% include 'shop/include/single_product.html' %}
                             </div>
+                        {% empty %}
+                            <h4>محصولی با مشخصات موجود پیدا نشد</h4>
                         {% endfor %}
                     </div>
 
