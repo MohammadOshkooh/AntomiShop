@@ -64,7 +64,7 @@ class Product(models.Model):
     # slug = AutoSlugField(populate_from='name'.replace(' ', '-'), unique=True, allow_unicode=True,
     # verbose_name='اسلاگ')
     slug = models.SlugField()
-    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True,
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, blank=True,
                                  verbose_name='دسته بندی محصول')
     tag = models.ManyToManyField(Tag, blank=True)
 
@@ -122,7 +122,7 @@ STATUS_CHOICES = (
 
 class Favorite(models.Model):
     owner = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, verbose_name='مالک')
-    product = models.ManyToManyField(Product, blank=True, null=True, verbose_name='محصول')
+    product = models.ManyToManyField(Product, blank=True, verbose_name='محصول')
 
     def __str__(self):
         return self.owner.username

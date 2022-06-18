@@ -1,11 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, FormView, DeleteView, CreateView, TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, FormView, DeleteView
 
 from cart.forms import AddToCartForm
-from cart.models import Cart
 from shop.forms import ProductReviewForm, AddFavoriteItemForm, DeleteCommentForm
 from shop.models import Product, Comment, ProductCategory, Favorite
 from tag.models import Tag
@@ -36,7 +35,7 @@ class ProductList(ListView):
             select.replace('+', ' ')
             if select == 'all':
                 select = None
-                
+
         # category filter
         category = self.request.GET.get('category')
 
