@@ -63,11 +63,7 @@
                         <div class="footer_menu">
                             <ul>
                                 <li><a href="{% url 'about_us' %}">درباره ما</a></li>
-                                <li><a href="#">نحوه ارسال</a></li>
-                                <li><a href="#">محصولات جدید</a></li>
-                                <li><a href="#">محصولات برتر</a></li>
                                 <li><a href="{% url 'accounts:dashboard' request.user.pk %}">حساب کاربری</a></li>
-                                <li><a href="#">سابقه خرید</a></li>
                             </ul>
                         </div>
                     </div>
@@ -80,24 +76,6 @@
                                 <li><a href="{% url 'accounts:dashboard' request.user.pk %}">حساب کاربری</a></li>
                                 <li><a href="cart.html">سبد خرید</a></li>
                                 <li><a href="{% url 'shop:favorites_list' %}">علاقه‌مندی‌ها</a></li>
-                                <li><a href="#">کاهش قیمت‌ها</a></li>
-                                <li><a href="#">سابقه خرید</a></li>
-                                <li><a href="#">سفارشات بین المللی</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-5 col-sm-6">
-                    <div class="widgets_container widget_menu">
-                        <h3>خدمات مشتری</h3>
-                        <div class="footer_menu">
-                            <ul>
-                                <li><a href="#">نقشه سایت</a></li>
-                                <li><a href="{% url 'accounts:dashboard' request.user.pk %}">حساب کاربری</a></li>
-                                <li><a href="#">نحوه ارسال</a></li>
-                                <li><a href="#">سابقه خرید</a></li>
-                                <li><a href="{% url 'shop:favorites_list' %}">علاقه‌مندی‌ها</a></li>
-                                <li><a href="#">ویژه ها</a></li>
                             </ul>
                         </div>
                     </div>

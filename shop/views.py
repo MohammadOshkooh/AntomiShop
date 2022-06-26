@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, FormView, DeleteView
 
-from cart.forms import AddToCartForm
 from shop.forms import ProductReviewForm, AddFavoriteItemForm, DeleteCommentForm
 from shop.models import Product, Comment, ProductCategory, Favorite
 from tag.models import Tag
@@ -25,7 +24,6 @@ class ProductList(ListView):
         queryset = Product.objects.filter(availability=True)
 
         # search
-
         search = self.request.GET.get('search')
         select = self.request.GET.get('select')
 
@@ -38,7 +36,6 @@ class ProductList(ListView):
 
         # category filter
         category = self.request.GET.get('category')
-
         if category is not None or select is not None:
             if category is None:
                 category = select
@@ -47,6 +44,7 @@ class ProductList(ListView):
                 if category in product.category.get_fullname():
                     new_queryset.append(product)
             queryset = new_queryset
+
         # tag filter
         tag = self.request.GET.get('tag')
         if tag is not None:
@@ -55,7 +53,6 @@ class ProductList(ListView):
         # filter price
         self.min_range = self.request.GET.get('price_min')
         self.max_range = self.request.GET.get('price_max')
-
         if self.min_range is not None:
             queryset = queryset.filter(current_price__range=[int(self.min_range), int(self.max_range)]).order_by(
                 'current_price')
@@ -88,16 +85,17 @@ def product_detail(request, slug):
             if tag in product_tags and pr not in related_products:
                 related_products.append(pr)
     related_products.remove(product)
+
     if request.method == 'POST':
         user = request.user
         # product review
         product_review_form = ProductReviewForm(data=request.POST)
         if product_review_form.is_valid():
             if user.is_authenticated:
-                review_form = product_review_form.save(commit=False)
-                review_form.owner = user
-                review_form.product = product
-                review_form.save()
+                product_review_form = product_review_form.save(commit=False)
+                product_review_form.owner = user
+                product_review_form.product = product
+                product_review_form.save()
                 messages.success(request, 'نظر شما با موفقیت ثبت شد')
                 return redirect(product.get_absolute_url(), product.slug)
             else:
@@ -121,20 +119,20 @@ def product_detail(request, slug):
         try:
             comment_id = int(request.POST.get('comment_id'))
         except:
-            parent_id = None
+            comment_id = None
         if comment_id is not None:
             comment = Comment.objects.filter(id=comment_id).first()
             comment.delete()
             messages.success(request, 'کامنت شما با موفقیت حذف شد')
             return redirect(product.get_absolute_url(), product.slug)
+
+    # request.method is not 'POST':
     else:
         product_review_form = ProductReviewForm()
-        add_to_cart_form = AddToCartForm()
         delete_comment_form = DeleteCommentForm()
 
     context = {
         'product_review_form': product_review_form,
-        'add_to_cart_form': add_to_cart_form,
         'product': product,
         'comments': comments,
         'delete_comment_form': delete_comment_form,
