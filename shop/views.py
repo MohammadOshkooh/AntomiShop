@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, FormView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
 
 from shop.forms import ProductReviewForm, AddFavoriteItemForm, DeleteCommentForm
 from shop.models import Product, Comment, ProductCategory, Favorite
@@ -241,6 +242,14 @@ class DeleteFavoriteItem(LoginRequiredMixin, FormView):
 
 class AddFavoriteItems(LoginRequiredMixin, FormView):
     form_class = AddFavoriteItemForm
+    template_name = 'shop/product_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AddFavoriteItems, self).get_context_data(**kwargs)
+        slug = self.kwargs.get('slug')
+        product = Product.objects.filter(slug=slug).first()
+        context['product'] = product
+        return context
 
     def get_success_url(self):
         slug = self.kwargs.get('slug')

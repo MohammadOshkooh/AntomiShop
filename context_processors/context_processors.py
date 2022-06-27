@@ -37,7 +37,7 @@ def context_processors(request):
                 # return redirect(productt.get_absolute_url(), productt.slug)
             else:
                 messages.error(request, 'لطفا وارد حساب کاربری خود شوید')
-                return redirect(reverse_lazy('account_login'))
+                # return redirect(reverse_lazy('account_login'))
     else:
         add_to_cart_form = AddToCartForm()
 
