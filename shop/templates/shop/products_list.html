@@ -1,11 +1,11 @@
-{% extends 'base/_main.html' %}
+{% extends 'base/main.html' %}
 {% load product_tag %}
 {% block title %}قالب Antomi | قالب فروشگاهی آنتومی{% endblock %}
 {% load product_tag %}
-{% get_main_categories_products as main_parent %}
+{% load static %}
 
 {% block content %}
-
+   {% get_main_categories_products as main_parent %}
     <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
         <div class="container">
@@ -58,37 +58,6 @@
                                 <input type="hidden" id="price-max" name="price_max">
                             </form>
                         </div>
-                        <div class="widget_list">
-                            <h3>مقایسه محصولات</h3>
-                            <div class="recent_product_container">
-                                <article class="recent_product_list">
-                                    <figure>
-                                        <div class="product_thumb">
-                                            <a class="primary_img" href="product-details.html"><img
-                                                    src="assets/img/product/product9.jpg" alt=""></a>
-                                            <a class="secondary_img" href="product-details.html"><img
-                                                    src="assets/img/product/product10.jpg" alt=""></a>
-                                        </div>
-                                        <div class="product_content">
-                                            <h4><a href="product-details.html">لورم ایپسوم متن ساختگی با تولید</a></h4>
-                                            <div class="product_rating">
-                                                <ul>
-                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="price_box">
-                                                <span class="old_price">70,000 تومان</span>
-                                                <span class="current_price">65,000 تومان</span>
-                                            </div>
-                                        </div>
-                                    </figure>
-                                </article>
-                            </div>
-                        </div>
                         <div class="widget_list tags_widget">
                             <h3>برچسب های محصولات</h3>
                             <div class="tag_cloud">
@@ -107,7 +76,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="shop_banner_thumb">
-                                    <img src="assets/img/bg/banner16.jpg" alt="">
+                                    <img src="{% static '../../../static/img/bg/banner16.jpg' %}" alt="">
                                 </div>
                             </div>
                         </div>
