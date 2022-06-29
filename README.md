@@ -142,3 +142,4 @@ After creating a superuser you can login into your admin panels.
 ✅ Online version
 </h3>
 <p>soon...</p>
+https://mohammadoshkooh.pythonanywhere.com/
