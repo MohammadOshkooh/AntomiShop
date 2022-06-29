@@ -66,7 +66,19 @@
                                                         <td class="product_quantity">ناموجود در انبار</td>
                                                     {% endif %}
 
-                                                    <td class="product_total"><a href="#">افزودن به سبد</a></td>
+                                                    <td class="product_total">
+                                                        <div class="product_variant quantity">
+                                                            <form action="" method="post">
+                                                                {% csrf_token %}
+                                                                <label>تعداد</label>
+                                                                {{ add_to_cart_form.quantity }}
+                                                                <input type="hidden" id="product_id" name="product_id"
+                                                                       value="{{ product.id }}">
+                                                                <button class="button" type="submit">افزودن به سبد
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             {% endfor %}
                                         {% endfor %}

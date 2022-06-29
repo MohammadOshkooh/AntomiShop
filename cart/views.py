@@ -77,6 +77,10 @@ class RemoveCartItem(FormView):
     def form_valid(self, form):
         pk = self.kwargs.get('pk')
         cart_item = Item.objects.filter(pk=pk).first()
+        print('-------------', cart_item)
         cart_item.delete()
-        messages.success(self.request, 'تغییرات با موفقیت اعمال شد')
+        # if cart_item.cart.cart_items.count() == 1:
+        #     cart_item.cart.delete()
+        # # messages.success(self.request, 'تغییرات با موفقیت اعمال شد')
         return redirect('cart:cart')
+    
