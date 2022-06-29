@@ -83,4 +83,5 @@ class RemoveCartItem(FormView):
         #     cart_item.cart.delete()
         # # messages.success(self.request, 'تغییرات با موفقیت اعمال شد')
         return redirect('cart:cart')
+
     
