@@ -1,6 +1,6 @@
 <p>
 
-<img src="https://github.com/MohammadOshkooh/Antomi-Shop/blob/master/static/img/logo/logo-white.png?raw=true" alt="PicoStyle" width="40%">
+<img src="https://github.com/MohammadOshkooh/Antomi-Shop/blob/master/static/img/logo/logo.png?raw=true" alt="PicoStyle" width="40%">
 
   <p>
     <i>
