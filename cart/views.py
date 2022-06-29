@@ -52,7 +52,7 @@ class CartView(LoginRequiredMixin, FormView):
 #         context = super(AddToCart, self).get_context_data(**kwargs)
 #         context['add_to_cart_form'] = kwargs.pop('form')
 #         return context
-#
+
 #     def form_valid(self, form):
 #         slug = self.kwargs.get('slug')
 #         user = self.request.user
