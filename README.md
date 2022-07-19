@@ -102,7 +102,7 @@ python manage.py migrate
 After creating the project database, you should run project. So type this command in Terminal or Console:
 </p>
 <pre>
-python manage.py runserver 4040
+python manage.py runserver 8000
 </pre>
 
 <h4>
