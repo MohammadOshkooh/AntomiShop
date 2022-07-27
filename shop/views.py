@@ -25,7 +25,7 @@ class ProductList(ListView):
 
         # search
         search = self.request.GET.get('search')
-        select = self.request.GET.get('select')
+        select = self.request.GET.get('select')  # for category selected in searchbar
 
         if search is not None:
             search.replace('+', ' ')
@@ -38,6 +38,7 @@ class ProductList(ListView):
         category = self.request.GET.get('category')
         if category is not None or select is not None:
             if category is None:
+                # category==None && select!=None
                 category = select
             new_queryset = []
             for product in queryset:

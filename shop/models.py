@@ -10,8 +10,6 @@ class ProductCategory(models.Model):
                                verbose_name='پدر')
     title = models.CharField(max_length=400, verbose_name='دسته بندی محصول')
     active = models.BooleanField(default=True)
-    # slug = AutoSlugField(populate_from='title'.replace(' ', '-'), unique=True, allow_unicode=True,
-    # verbose_name='اسلاگ')
     slug = models.SlugField()
 
     def get_fullname(self):
@@ -61,14 +59,10 @@ class Product(models.Model):
     short_description = models.TextField(verbose_name='توضیحات کوتاه')
     description = models.TextField(verbose_name='توضیحات')
     availability = models.BooleanField(default=True, verbose_name='موجود/ناموجود')
-    # slug = AutoSlugField(populate_from='name'.replace(' ', '-'), unique=True, allow_unicode=True,
-    # verbose_name='اسلاگ')
     slug = models.SlugField()
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, blank=True,
                                  verbose_name='دسته بندی محصول')
     tag = models.ManyToManyField(Tag, blank=True)
-
-    # favorites = models.ManyToManyField(get_user_model(), verbose_name='علاقه مندی ها')
 
     def __str__(self):
         return self.name
