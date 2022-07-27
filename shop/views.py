@@ -3,7 +3,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, FormView, DeleteView
-from django.contrib.messages.views import SuccessMessageMixin
 
 from shop.forms import ProductReviewForm, AddFavoriteItemForm, DeleteCommentForm
 from shop.models import Product, Comment, ProductCategory, Favorite
@@ -102,19 +101,6 @@ def product_detail(request, slug):
             else:
                 messages.error(request, 'برای ثبت نظر لطفا لاگین کنید')
 
-        # update comment
-        # try:
-        #     comment_id = int(request.POST.get('comment_id'))
-        # except:
-        #     parent_id = None
-        # if comment_id is not None:
-        #     comment = Comment.objects.filter(id=comment_id).first()
-        #     update_review_form = ProductReviewForm(instance=comment, data=request.POST)
-        #     if update_review_form.is_valid():
-        #         update_review_form = update_review_form.save()
-        #         messages.success(request, 'تغییرات با موفقیت اعمال شد')
-        #         return redirect(product.get_absolute_url(), product.slug)
-
         # delete comment
         delete_comment_form = DeleteCommentForm(request.POST)
         try:
@@ -142,38 +128,6 @@ def product_detail(request, slug):
     return render(request, 'shop/product_detail.html', context)
 
 
-# class ProductDetail(DetailView, FormView):
-#     model = Product
-#     template_name = 'shop/product_detail.html'
-#     queryset = Product.objects.filter(availability=True)
-#     context_object_name = 'product'
-#
-#     form_class = ProductReviewForm
-#
-#     def form_valid(self, form):
-#         user = self.request.user
-#         product = self.queryset.first()
-#         if user.is_authenticated:
-#             review_form = form.save(commit=False)
-#             review_form.owner = user
-#             review_form.product = product
-#             review_form.save()
-#             messages.success(self.request, 'نظر شما با موفقیت ثبت شد')
-#             return HttpResponseRedirect(product.get_absolute_url(), product.slug)
-#         else:
-#             messages.error(self.request, 'برای ثبت نظر لطفا لاگین کنید')
-#             return HttpResponseRedirect(reverse_lazy('account_login'))
-#
-#     def form_invalid(self, form):
-#         return super(ProductDetail, self).form_invalid(form)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(ProductDetail, self).get_context_data()
-#         product = kwargs['object']
-#         context['comments'] = Comment.objects.filter(is_active=True, product=product)
-#         return context
-
-
 # ---- Favorite list ---- #
 
 class FavoritesView(LoginRequiredMixin, ListView):
@@ -191,16 +145,6 @@ class ClearFavoritesList(DeleteView):
     success_url = reverse_lazy('shop:favorites_list')
 
 
-# def delete_favorite_item(request, slug):
-#     instance = Favorite.objects.filter(owner=request.user).first()
-#     product = get_object_or_404(Product, slug=slug)
-#     if instance is not None:
-#         if request.method == 'POST':
-#             instance.product.remove(product)
-#             messages.success(request, 'ایتم با موفقیت از لیست علاقه مندی ها حذف شد')
-#
-#     return redirect('shop:favorites_list')
-
 class DeleteFavoriteItem(LoginRequiredMixin, FormView):
     form_class = AddFavoriteItemForm
 
@@ -212,32 +156,6 @@ class DeleteFavoriteItem(LoginRequiredMixin, FormView):
             instance.product.remove(product)
             messages.success(self.request, 'ایتم با موفقیت از لیست علاقه مندی ها حذف شد')
         return redirect('shop:favorites_list')
-
-
-# def add_favorite_items(request, slug):
-#     instance = Favorite.objects.filter(owner=request.user).first()
-#     product = get_object_or_404(Product, slug=slug)
-#     if instance is not None:
-#         if request.method == 'POST':
-#             if product in instance.product.all():
-#                 messages.error(request, 'این ایتم از قبل در لیست علاقه مندی ها وجود دارد')
-#             else:
-#                 add_form = AddFavoriteItemForm(instance=instance, data=request.POST)
-#                 add_form = add_form.save()
-#                 add_form.product.add(product)
-#                 messages.success(request, 'ایتم با موفقیت به لیست علاقه مندی ها اضافه شد')
-#
-#     else:  # instance in None -> favorite list not exist
-#         if request.method == 'POST':
-#             add_form = AddFavoriteItemForm()
-#             # Favorite.objects.create(owner=request.user)
-#             add_form = add_form.save(commit=False)
-#             add_form.owner = request.user
-#             add_form.save()
-#             add_form.product.add(product)
-#             messages.success(request, 'ایتم با موفقیت به لیست علاقه مندی ها اضافه شد')
-#
-#     return redirect('shop:product_detail', slug=slug)
 
 
 class AddFavoriteItems(LoginRequiredMixin, FormView):
