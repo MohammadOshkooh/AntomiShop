@@ -67,8 +67,8 @@
                                         <span class="cart_price"><span>{{ cart.total_price }} تومان</span> <i
                                                 class="ion-ios-arrow-down"></i></span>
                                         <span class="cart_count">{{ cart.cart_items.count }}</span>
-
                                     </a>
+
                                     <!--mini cart-->
                                     <div class="mini_cart">
                                         <div class="mini_cart_inner">
@@ -132,7 +132,8 @@
                         <div class="main_menu menu_position text-center">
                             <nav>
                                 <ul>
-                                    <li><a class="active" href="{% url 'home' %}">خانه</a>
+                                    <li>
+                                        <a class="active" href="{% url 'home' %}">خانه</a>
                                     </li>
                                     <li class="mega_items"><a href="{% url 'shop:product_list' %}">فروشگاه<i
                                             class="fa fa-angle-down"></i></a>
@@ -140,11 +141,17 @@
                                             <ul class="mega_menu_inner">
                                                 <li><a href="">سایر صفحات</a>
                                                     <ul>
-                                                        <li><a href="cart.html">سبد خرید</a></li>
-                                                        <li><a href="{% url 'shop:favorites_list' %}">لیست
-                                                            علاقه‌مندی‌ها</a></li>
-                                                        <li><a href="{% url 'accounts:dashboard' request.user.pk %}">حساب
-                                                            کاربری</a></li>
+                                                        <li>
+                                                            <a href="cart.html">سبد خرید</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{% url 'shop:favorites_list' %}">لیست
+                                                            علاقه‌مندی‌ها</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{% url 'accounts:dashboard' request.user.pk %}">حساب
+                                                            کاربری</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li><a href="{% url 'shop:product_list' %}">محصولات</a>
@@ -154,7 +161,7 @@
                                     </li>
                                     <li><a href="{% url 'blog:list' %}">بلاگ<i class="fa "></i></a>
                                     </li>
-                                    <li><a href="#">صفحات <i class="fa fa-angle-down"></i></a>
+                                    <li><a href="">صفحات <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
                                             <li><a href="{% url 'about_us' %}">درباره ما</a></li>
                                             <li><a href="{% url 'questions' %}">سوالات متداول</a></li>

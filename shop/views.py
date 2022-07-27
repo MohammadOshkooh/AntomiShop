@@ -23,7 +23,7 @@ class ProductList(ListView):
     def get_queryset(self):
         queryset = Product.objects.filter(availability=True)
 
-        # search
+        # --- search ---
         search = self.request.GET.get('search')
         select = self.request.GET.get('select')  # for category selected in searchbar
 
@@ -34,7 +34,7 @@ class ProductList(ListView):
             if select == 'all':
                 select = None
 
-        # category filter
+        # --- category filter ---
         category = self.request.GET.get('category')
         if category is not None or select is not None:
             if category is None:
@@ -46,12 +46,12 @@ class ProductList(ListView):
                     new_queryset.append(product)
             queryset = new_queryset
 
-        # tag filter
+        # --- tag filter ---
         tag = self.request.GET.get('tag')
         if tag is not None:
             queryset = queryset.filter(tag__title=tag)
 
-        # filter price
+        # --- filter price ---
         self.min_range = self.request.GET.get('price_min')
         self.max_range = self.request.GET.get('price_max')
         if self.min_range is not None:
@@ -78,18 +78,20 @@ class ProductList(ListView):
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, availability=True)
     comments = Comment.objects.filter(is_active=True, product=product)
-    # related products
+
+    # --- related products ---
     related_products = []
     product_tags = product.tag.all()
-    for pr in Product.objects.all():
-        for tag in pr.tag.all():
-            if tag in product_tags and pr not in related_products:
-                related_products.append(pr)
-    related_products.remove(product)
+    if product_tags.count() != 0:
+        for pr in Product.objects.all():
+            for tag in pr.tag.all():
+                if tag in product_tags and pr not in related_products:
+                    related_products.append(pr)
+        related_products.remove(product)
 
     if request.method == 'POST':
         user = request.user
-        # product review
+        # --- product review ---
         product_review_form = ProductReviewForm(data=request.POST)
         if product_review_form.is_valid():
             if user.is_authenticated:
@@ -102,7 +104,7 @@ def product_detail(request, slug):
             else:
                 messages.error(request, 'برای ثبت نظر لطفا لاگین کنید')
 
-        # delete comment
+        # --- delete comment ---
         delete_comment_form = DeleteCommentForm(request.POST)
         try:
             comment_id = int(request.POST.get('comment_id'))
@@ -129,7 +131,7 @@ def product_detail(request, slug):
     return render(request, 'shop/product_detail.html', context)
 
 
-# ---- Favorite list ---- #
+# --- Favorite list ---
 
 class FavoritesView(LoginRequiredMixin, ListView):
     model = Favorite
