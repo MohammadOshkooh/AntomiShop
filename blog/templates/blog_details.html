@@ -1,4 +1,5 @@
 {% extends 'base/main.html' %}
+{% load static %}
 {% block title %}{% endblock %}
 {% load crispy_forms_filters %}
 {% block content %}
@@ -34,16 +35,16 @@
                                         <div class="blog_meta">
                                             <span class="author">ارسال توسط : <a
                                                     href="#">{{ article.author }}</a> / </span>
-                                            <span class="meta_date">در : <a href="#">{{ article.created }}</a> /</span>
+                                            <span class="meta_date">در : {{ article.created }} /</span>
                                             <span class="post_category">در :
                                                 {% for category in article.category.all %}
-                                                    <a href="#">{{ category.title }}</a>
+                                                    {{ category.title }}
                                                 {% endfor %}
                                             </span>
                                         </div>
                                     </div>
                                     <div class="blog_thumb">
-                                        <img src="assets/img/blog/blog-big1.jpg" alt="#image">
+                                        <img src="{% static '../../static/img/blog/blog-big1.jpg' %}" alt="#image">
                                     </div>
                                     <figcaption class="blog_content">
                                         <div class="post_content">
@@ -57,90 +58,22 @@
                                                 {% endfor %}
                                             </div>
 
-                                            <div class="social_sharing">
-                                                <p>اشتراک گذاری این مطلب:</p>
-                                                <ul>
-                                                    <li><a href="#" title="facebook"><i class="fa fa-facebook"></i></a>
-                                                    </li>
-                                                    <li><a href="#" title="twitter"><i class="fa fa-twitter"></i></a>
-                                                    </li>
-                                                    <li><a href="#" title="pinterest"><i
-                                                            class="fa fa-pinterest"></i></a>
-                                                    </li>
-                                                    <li><a href="#" title="google+"><i
-                                                            class="fa fa-google-plus"></i></a>
-                                                    </li>
-                                                    <li><a href="#" title="linkedin"><i class="fa fa-linkedin"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
                                         </div>
                                     </figcaption>
                                 </figure>
                             </article>
-                            <div class="related_posts">
-                                <h3>مطالب مرتبط</h3>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6">
-                                        <article class="single_related">
-                                            <figure>
-                                                <div class="related_thumb">
-                                                    <img src="assets/img/blog/blog7.jpg" alt="">
-                                                </div>
-                                                <figcaption class="related_content">
-                                                    <h4><a href="#">مطلب دارای گالری</a></h4>
-                                                    <div class="blog_meta">
-                                                        <span class="author">توسط: <a href="#">مدیر</a> / </span>
-                                                        <span class="meta_date"> 11 آذر 1398	</span>
-                                                    </div>
-                                                </figcaption>
-                                            </figure>
-                                        </article>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <article class="single_related">
-                                            <figure>
-                                                <div class="related_thumb">
-                                                    <img src="assets/img/blog/blog8.jpg" alt="">
-                                                </div>
-                                                <figcaption class="related_content">
-                                                    <h4><a href="#">مطلب بلاگ صوتی</a></h4>
-                                                    <div class="blog_meta">
-                                                        <span class="author">توسط: <a href="#">مدیر</a> / </span>
-                                                        <span class="meta_date"> 11 آذر 1398	</span>
-                                                    </div>
-                                                </figcaption>
-                                            </figure>
-                                        </article>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <article class="single_related">
-                                            <figure>
-                                                <div class="related_thumb">
-                                                    <img src="assets/img/blog/blog9.jpg" alt="">
-                                                </div>
-                                                <figcaption class="related_content">
-                                                    <h4><a href="#">لورم ایپسوم متن ساختگی</a></h4>
-                                                    <div class="blog_meta">
-                                                        <span class="author">توسط: <a href="#">مدیر</a> / </span>
-                                                        <span class="meta_date"> 11 آذر 1398	</span>
-                                                    </div>
-                                                </figcaption>
-                                            </figure>
-                                        </article>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="comments_box">
                                 <h3>{{ comments.count }} دیدگاه </h3>
                                 {% for parent in comment_main_parents %}
                                     <div class="comment_list">
                                         <div class="comment_thumb">
-                                            <img src="assets/img/blog/comment3.png.jpg" alt="">
+                                            <img src="{% static 'img/blog/../../static/img/blog/comment3.png.jpg' %}"
+                                                 alt="">
                                         </div>
                                         <div class="comment_content">
                                             <div class="comment_meta">
-                                                <h5><a href="#">{{ parent.owner }}</a></h5>
+                                                <h5>{{ parent.owner }}</h5>
                                                 <span>{{ parent.created }}</span>
                                             </div>
                                             {{ parent.comment|linebreaks }}
@@ -161,7 +94,8 @@
                                     {% for comment in parent.get_all_children %}
                                         <div class="comment_list list_two">
                                             <div class="comment_thumb">
-                                                <img src="assets/img/blog/comment3.png.jpg" alt="">
+                                                <img src="{% static 'img/blog/../../static/img/blog/comment3.png.jpg' %}"
+                                                     alt="">
                                             </div>
                                             <div class="comment_content">
                                                 <div class="comment_meta">
@@ -170,9 +104,6 @@
                                                     <span>{{ comment.created }}</span>
                                                 </div>
                                                 {{ comment.comment|linebreaks }}
-                                                {#                                                <div class="comment_reply">#}
-                                                {#                                                    <a href="javascript:void(0)" class="{{ comment.id }}" id="rulink">پاسخ</a>#}
-                                                {#                                                </div>#}
                                             </div>
                                             <div id="{{ comment.id }}" style="display: none;">
                                                 <form action="" id="form" method="post">

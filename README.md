@@ -40,6 +40,7 @@ Technologies used in PdfTools
   <li>Docker</li>
   <li>MySQL</li>
   <li>Testing</li>
+  <li>Django allauth</li>
   <li>Jwt authentication</li>
 </ul>
 

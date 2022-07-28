@@ -15,18 +15,6 @@
         <div class="widget_title">
             <h3>دیدگاه‌های جدید</h3>
         </div>
-        {% get_n_last_records comments 4 as 4_last_comments %}
-        {% for c in 4_last_comments %}
-            <div class="post_wrapper">
-                <div class="post_thumb">
-                    <a href="blog-details.html"><img src="assets/img/blog/comment2.png.jpg" alt=""></a>
-                </div>
-                <div class="post_info">
-                    <span> <a href="#">{{ c.owner }}</a> می‌گوید:</span>
-                    <a href="blog-details.html">{{ c.comment|truncatewords:4 }}</a>
-                </div>
-            </div>
-        {% endfor %}
     </div>
     <div class="widget_list widget_post">
         <div class="widget_title">
@@ -36,7 +24,7 @@
         {% for ar in 4_last_article %}
             <div class="post_wrapper">
                 <div class="post_thumb">
-                    <a href="blog-details.html"><img src="assets/img/blog/blog9.jpg" alt=""></a>
+                    <a href="{% url 'blog:detail' ar.id %}"><img src="{{ ar.gallery_set.first.image.url }}" alt=""></a>
                 </div>
                 <div class="post_info">
                     <h4><a href="{% url 'blog:detail' ar.id %}">{{ ar.title }}</a></h4>
