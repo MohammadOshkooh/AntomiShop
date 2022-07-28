@@ -61,7 +61,7 @@
         <div class="tag_widget">
             <ul>
                 {% for tag in tags %}
-                    <li><a href="#">{{ tag.title }}</a></li>
+                    <li><a href="{% url 'blog:list' %}?tag={{ tag.title }}">{{ tag.title }}</a></li>
                 {% endfor %}
             </ul>
         </div>

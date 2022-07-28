@@ -25,6 +25,11 @@ class BlogListView(ListView):
         if category is not None:
 
             queryset = queryset.filter(category__title=category)
+        
+        # --- Tag ---
+        tag = self.request.GET.get('tag')
+        if tag is not None:
+            queryset = queryset.filter(tag__title=tag)
 
         return queryset
 
