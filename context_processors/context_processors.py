@@ -17,7 +17,7 @@ def context_processors(request):
         cart = Cart.objects.filter(owner=user, is_paid=False).first()
         favorite_list = Favorite.objects.filter(owner=user).first()
     if request.method == 'POST':
-        # add to cart
+        # --- add to cart ---
         add_to_cart_form = AddToCartForm(data=request.POST)
         if add_to_cart_form.is_valid():
             if request.user.is_authenticated:
@@ -34,10 +34,8 @@ def context_processors(request):
                 add_to_cart_form.price = productt.current_price
                 add_to_cart_form.save()
                 messages.success(request, 'محصول با موفقیت به سبد خرید اضافه شد')
-                # return redirect(productt.get_absolute_url(), productt.slug)
             else:
                 messages.error(request, 'لطفا وارد حساب کاربری خود شوید')
-                # return redirect(reverse_lazy('account_login'))
     else:
         add_to_cart_form = AddToCartForm()
 

@@ -23,7 +23,6 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ انتشار')
     body = models.TextField(verbose_name='متن مقاله')
     tag = models.ManyToManyField(Tag, blank=True, null=True, verbose_name='برچسب')
-    file = models.FileField(upload_to='blog/file/%Y/%m/%d/', null=True, blank=True, verbose_name='فایل')
     category = models.ManyToManyField(ArticleCategory, verbose_name='دسته بندی', blank=True, null=True)
 
     def get_absolute_url(self):

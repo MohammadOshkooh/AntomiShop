@@ -12,12 +12,23 @@ class BlogListView(ListView):
     template_name = 'blog.html'
     context_object_name = 'articles'
 
+    def get_queryset(self):
+        queryset = Article.objects.all()
+
+        # --- Search ---
+        search = self.request.GET.get('search')
+        if search is not None:
+            queryset = queryset.filter(title__icontains=search)
+    
+
+        return queryset
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(BlogListView, self).get_context_data()
         context['comments'] = BlogComment.objects.all()
         context['categories'] = ArticleCategory.objects.all()
         context['tags'] = Tag.objects.all()
-        # contest['articles'] = Article.objects.all()
+
         return context
 
 
@@ -59,4 +70,5 @@ class BlogDetailView(DetailView, FormView):
         context['articles'] = Article.objects.all()
         context['categories'] = ArticleCategory.objects.all()
         context['tags'] = Tag.objects.all()
+
         return context

@@ -34,24 +34,17 @@
                                             <div class="blog_thumb blog_thumb_active owl-carousel">
                                                 {% for gallery in article.gallery_set.all %}
                                                     <div class="single_blog_thumb">
-                                                        <a href="#"><img src="{{ gallery.image.url }}" alt=""></a>
+                                                        <a href="{{ article.get_absolute_url}}"><img src="{{ gallery.image.url }}" alt=""></a>
                                                     </div>
                                                 {% endfor %}
                                             </div>
-                                            {#                                        {{ article.file.url }}#}
-                                            {#                                            <div class="blog_thumb">#}
-                                            {#                                                <video src="{{ article.file }}"></video>#}
-                                            {#                                                <iframe src="{{ article.file }}"#}
-                                            {#                                                        allow="autoplay; encrypted-media" allowfullscreen></iframe>#}
-                                            {#                                            </div>#}
+
                                             <figcaption class="blog_content">
                                                 <h4 class="post_title"><a
                                                         href="{{ article.id }}">{{ article.title }}</a></h4>
                                                 <div class="blog_meta">
-                                                    <span class="author">ارسال توسط : <a
-                                                            href="#">{{ article.author }}</a> / </span>
-                                                    <span class="meta_date">ارسال شده در :  <a
-                                                            href="#">{{ article.created }}</a></span>
+                                                    <span class="author">ارسال توسط : {{ article.author }}/ </span>
+                                                    <span class="meta_date">ارسال شده در :  {{ article.created }}</span>
                                                 </div>
                                                 <div class="blog_desc">
                                                     <p>{{ article.body|truncatechars:500|linebreaks }}</p>
