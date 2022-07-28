@@ -8,16 +8,10 @@ from accounts.models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = CustomUser
-        fields = UserCreationForm.Meta.fields + ('age', 'gender')
+        fields = UserCreationForm.Meta.fields + ('age', 'gender', 'Subscribe_to_the_newsletter')
 
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm):
         model = CustomUser
         fields = UserChangeForm.Meta.fields
-
-
-# class UpdateProfile(forms.ModelForm):
-#     class Meta:
-#         model = get_user_model()
-#         fields = ['username', 'email', 'first_name', 'last_name', 'age', 'gender']

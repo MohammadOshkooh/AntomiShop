@@ -35,8 +35,6 @@
                             <div class="dashboard_tab_button">
                                 <ul role="tablist" class="nav flex-column dashboard-list">
                                     <li><a href="#dashboard" data-toggle="tab" class="nav-link active">داشبورد</a></li>
-                                    <li><a href="#orders" data-toggle="tab" class="nav-link">سفارشات</a></li>
-                                    <li><a href="#downloads" data-toggle="tab" class="nav-link">دریافت ها</a></li>
                                     <li><a href="#account-details" data-toggle="tab" class="nav-link">جزئیات حساب</a>
                                     </li>
                                     <li><a href="{% url 'account_logout' %}" class="nav-link">خروج</a></li>
@@ -50,67 +48,6 @@
                                     <h3>داشبورد </h3>
                                     <p>خوش آمدی {{ request.user }} </p>
                                 </div>
-                                <div class="tab-pane fade" id="orders">
-                                    <h3>سفارشات</h3>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th>ترتیب</th>
-                                                <th>تاریخ</th>
-                                                <th>وضعیت</th>
-                                                <th>جمع</th>
-                                                <th>اقدامات</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>10 تیر 1397</td>
-                                                <td><span class="success">اتمام یافته</span></td>
-                                                <td>50,000 تومان برای یک محصول</td>
-                                                <td><a href="cart.html" class="view">مشاهده</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>10 تیر 1397</td>
-                                                <td>در حال پردازش</td>
-                                                <td>180,000 تومان برای یک محصول</td>
-                                                <td><a href="cart.html" class="view">مشاهده</a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="downloads">
-                                    <h3>دریافت ها</h3>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th>محصول</th>
-                                                <th>دریافت ها</th>
-                                                <th>انقضا</th>
-                                                <th>دریافت</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</td>
-                                                <td>10 تیر 1397</td>
-                                                <td><span class="danger">منقضی شده</span></td>
-                                                <td><a href="#" class="view">برای دریافت فایل خود کلیک کنید</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>لورم ایپسوم متن ساختگی با تولید سادگی</td>
-                                                <td>11 مرداد 1397</td>
-                                                <td>هرگز</td>
-                                                <td><a href="#" class="view">برای دریافت فایل خود کلیک کنید</a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
                                 <div class="tab-pane fade" id="account-details">
                                     <div class="login">
                                         <div class="login_form_container">
@@ -118,13 +55,6 @@
                                                 <form action="" method="post">
                                                     {% csrf_token %}
                                                     {{ form|crispy }}
-                                                    <span class="custom_checkbox">
-														<label><input type="checkbox" value="1" name="optin"> دریافت پیشنهادات ویژه</label>
-													</span>
-                                                    <br>
-                                                    <span class="custom_checkbox">
-														<label><input type="checkbox" value="1" name="newsletter"> عضویت در خبرنامه ما</label>
-													</span>
                                                     <div class="save_button primary_btn default_button">
                                                         <button type="submit">ذخیره</button>
                                                     </div>
