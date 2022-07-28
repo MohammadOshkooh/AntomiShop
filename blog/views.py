@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import TemplateView, DetailView, ListView, FormView
+from django.shortcuts import redirect
+from django.views.generic import DetailView, ListView, FormView
 
 from tag.models import Tag
 from .forms import CommentForm
@@ -19,7 +19,12 @@ class BlogListView(ListView):
         search = self.request.GET.get('search')
         if search is not None:
             queryset = queryset.filter(title__icontains=search)
-    
+
+        # -- Category --
+        category = self.request.GET.get('category')
+        if category is not None:
+
+            queryset = queryset.filter(category__title=category)
 
         return queryset
 
