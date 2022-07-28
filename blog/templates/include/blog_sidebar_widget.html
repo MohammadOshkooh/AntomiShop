@@ -1,14 +1,16 @@
 {% load blog_tags %}
 <div class="blog_sidebar_widget">
-    <div class="widget_list widget_search">
-        <div class="widget_title">
-            <h3>جستجو</h3>
+    {% if command == 'list' %}
+        <div class="widget_list widget_search">
+            <div class="widget_title">
+                <h3>جستجو</h3>
+            </div>
+            <form action="" method="get">
+                <input placeholder="جستجو ..." type="text" name="search">
+                <button type="submit">جستجو</button>
+            </form>
         </div>
-        <form action="" method="get">
-            <input placeholder="جستجو ..." type="text" name="search">
-            <button type="submit">جستجو</button>
-        </form>
-    </div>
+    {% endif %}
     <div class="widget_list comments">
         <div class="widget_title">
             <h3>دیدگاه‌های جدید</h3>

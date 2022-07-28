@@ -23,9 +23,8 @@ class BlogListView(ListView):
         # -- Category --
         category = self.request.GET.get('category')
         if category is not None:
-
             queryset = queryset.filter(category__title=category)
-        
+
         # --- Tag ---
         tag = self.request.GET.get('tag')
         if tag is not None:
@@ -38,6 +37,7 @@ class BlogListView(ListView):
         context['comments'] = BlogComment.objects.all()
         context['categories'] = ArticleCategory.objects.all()
         context['tags'] = Tag.objects.all()
+        context['command'] = 'list'
 
         return context
 
@@ -80,5 +80,6 @@ class BlogDetailView(DetailView, FormView):
         context['articles'] = Article.objects.all()
         context['categories'] = ArticleCategory.objects.all()
         context['tags'] = Tag.objects.all()
+        context['command'] = 'detail'
 
         return context
