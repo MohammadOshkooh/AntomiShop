@@ -30,7 +30,7 @@ Online fashion store for wholesalers and retailers. <br>
 <hr>
 
 <h3>
-Technologies used in PdfTools
+Technologies used in antomiShop
 </h3>
 
 <ul>
