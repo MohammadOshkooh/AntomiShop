@@ -24,10 +24,11 @@ Online fashion store for wholesalers and retailers. <br>
 - [X] Cart
 - [X] Product Category
 - [X] Search
-- [ ] Blog
+- [X] Blog
 - [X] Api
 
 <hr>
+
 
 <h3>
 Technologies used in antomiShop
@@ -45,6 +46,7 @@ Technologies used in antomiShop
 </ul>
 
 <hr>
+
 
 <h3>
 ⚙️ Config and run the project
@@ -74,7 +76,7 @@ python manage.py migrate
 <h3>
 ✅ Online version
 </h3>
-<p>soon...</p>
+<p>soon....</p>
 <a href="https://mohammadoshkooh.pythonanywhere.com/" target="_blank">Link</a>
 
 
