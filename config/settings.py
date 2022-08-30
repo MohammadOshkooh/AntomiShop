@@ -31,7 +31,6 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DJANGO_DEBUG')
-# DEBUG = env("DJANGO_DEBUG")
 
 # ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS")
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
@@ -112,27 +111,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('POSTGRES_NAME'),
-#         'USER': os.environ.get('POSTGRES_USER'),
-#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-#         'HOST': 'db',
-#         'PORT': 5432,
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'MohammadOshkooh$MySQL',
-#         'PASSWORD': 'qwert069',
-#         'USER': 'MohammadOshkooh',
-#         'HOST': 'MohammadOshkooh.mysql.pythonanywhere-services.com',
-#     }
-# }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -193,12 +171,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('account_login')
 
 ACCOUNT_SESSION_REMEMBER = False
-# ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-# ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_UNIQUE_EMAIL = True
-# ACCOUNT_FORMS = {'login': 'accounts.forms.CustomLoginForm'}
-
-# ----------- end -----------
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -207,7 +180,7 @@ EMAIL_HOST_USER = 'mohammadoshkooh@gmail.com'
 EMAIL_HOST_PASSWORD = '957070152mohammad069'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-# ---
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

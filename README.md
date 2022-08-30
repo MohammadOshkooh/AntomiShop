@@ -24,8 +24,15 @@ Online fashion store for wholesalers and retailers. <br>
 - [X] Cart
 - [X] Product Category
 - [X] Search
+- [X] Price filtering
+- [X] Tag
+- [X] Related products
+- [X] Comment
+- [X] Product review
+- [X] Product rating
+- [X] Product discount
 - [X] Blog
-- [X] Api
+- [X] Authentication
 
 <hr>
 
@@ -74,9 +81,8 @@ python manage.py migrate
 
 <hr>
 <h3>
-✅ Online version
+<a href="https://mohammadoshkooh.pythonanywhere.com/" target="_blank">Online version</a>
+
 </h3>
-<p>soon....</p>
-<a href="https://mohammadoshkooh.pythonanywhere.com/" target="_blank">Link</a>
 
 

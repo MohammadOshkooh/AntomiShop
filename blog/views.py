@@ -82,5 +82,4 @@ class BlogDetailView(DetailView, FormView):
         context['tags'] = Tag.objects.all()
         context['command'] = 'detail'
 
-
         return context
