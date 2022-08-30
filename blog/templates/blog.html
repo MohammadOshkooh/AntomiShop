@@ -34,7 +34,8 @@
                                             <div class="blog_thumb blog_thumb_active owl-carousel">
                                                 {% for gallery in article.gallery_set.all %}
                                                     <div class="single_blog_thumb">
-                                                        <a href="{{ article.get_absolute_url}}"><img src="{{ gallery.image.url }}" alt=""></a>
+                                                        <a href="{{ article.get_absolute_url }}"><img
+                                                                src="{{ gallery.image.url }}" alt=""></a>
                                                     </div>
                                                 {% endfor %}
                                             </div>
@@ -44,7 +45,7 @@
                                                         href="{{ article.id }}">{{ article.title }}</a></h4>
                                                 <div class="blog_meta">
                                                     <span class="author">ارسال توسط : {{ article.author }}/ </span>
-                                                    <span class="meta_date">ارسال شده در :  {{ article.created }}</span>
+                                                    <span class="meta_date">ارسال شده در : {{ article.created }}</span>
                                                 </div>
                                                 <div class="blog_desc">
                                                     <p>{{ article.body|truncatechars:500|linebreaks }}</p>
@@ -62,15 +63,21 @@
                         <div class="blog_pagination">
                             <div class="pagination">
                                 <ul>
-                                    <li class="current">1</li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li class="next"><a href="#">بعدی</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                    {% if page_obj.has_previous %}
+                                        <li><a href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+                                        <li class="current"> Page {{ page_obj.number }}
+                                            of {{ page_obj.paginator.num_pages }}</li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                    {% elif page_obj.has_next %}
+                                        <li class="next"><a href="?page={{ page_obj.next_page_number }}">بعدی</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
                         <!--blog pagination area end-->
+
                     </div>
                     <div class="col-lg-3 col-md-12">
                         {% include 'include/blog_sidebar_widget.html' %}

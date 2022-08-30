@@ -11,6 +11,7 @@ class BlogListView(ListView):
     model = Article
     template_name = 'blog.html'
     context_object_name = 'articles'
+    paginate_by = 1
 
     def get_queryset(self):
         queryset = Article.objects.all()
@@ -62,6 +63,7 @@ class BlogDetailView(DetailView, FormView):
                 # create reply comment
                 reply_comment = form.save(commit=False)
                 reply_comment.parent = parent_object
+
         # normal comment
         new_comment = form.save(commit=False)
         new_comment.owner = self.request.user

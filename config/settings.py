@@ -33,7 +33,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 DEBUG = env('DJANGO_DEBUG')
 
 # ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS")
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'mohammadoshkooh.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
@@ -100,14 +100,24 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'USER': 'postgres',
+#         'HOST': 'db',
+#         'PORT': 5432
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'PASSWORD': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'MohammadOshkooh$new_db',
+        'PASSWORD': 'db0690891601',
+        'USER': 'MohammadOshkooh',
+        'HOST': 'MohammadOshkooh.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -180,7 +190,6 @@ EMAIL_HOST_USER = 'mohammadoshkooh@gmail.com'
 EMAIL_HOST_PASSWORD = '957070152mohammad069'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
