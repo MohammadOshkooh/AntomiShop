@@ -11,7 +11,7 @@ class BlogListView(ListView):
     model = Article
     template_name = 'blog.html'
     context_object_name = 'articles'
-    paginate_by = 1
+    paginate_by = 4
 
     def get_queryset(self):
         queryset = Article.objects.all()
