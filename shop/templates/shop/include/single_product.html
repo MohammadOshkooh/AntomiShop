@@ -42,15 +42,15 @@
                     <span class="current_price">{{ product.current_price }} تومان</span>
                 </div>
             </div>
-            <div class="add_to_cart">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <label>تعداد</label>
-                    <input type="hidden" name="quantity" value="1">
-                    <button class="button" type="submit">افزودن به سبد</button>
-                </form>
-
-            </div>
+{#            <div class="add_to_cart">#}
+{#                <form action="" method="post">#}
+{#                    {% csrf_token %}#}
+{#                    <label>تعداد</label>#}
+{#                    <input type="hidden" name="quantity" value="1">#}
+{#                    <button class="button" type="submit">افزودن به سبد</button>#}
+{#                </form>#}
+{##}
+{#            </div>#}
         </div>
         <div class="product_content list_content">
             <h4 class="product_name"><a

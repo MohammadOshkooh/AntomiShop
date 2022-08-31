@@ -77,7 +77,7 @@ class BlogDetailView(DetailView, FormView):
         context = super(BlogDetailView, self).get_context_data(**kwargs)
         comments = BlogComment.objects.filter(article=kwargs['object'])
         context['comments'] = comments
-        comment_main_parents = BlogComment.objects.filter(parent=None)
+        comment_main_parents = BlogComment.objects.filter(parent=None, article=kwargs['object'])
         context['comment_main_parents'] = comment_main_parents
         context['articles'] = Article.objects.all()
         context['categories'] = ArticleCategory.objects.all()
