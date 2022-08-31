@@ -100,24 +100,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'USER': 'postgres',
-#         'HOST': 'db',
-#         'PORT': 5432
-#     }
-# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'MohammadOshkooh$new_db',
-        'PASSWORD': 'db0690891601',
-        'USER': 'MohammadOshkooh',
-        'HOST': 'MohammadOshkooh.mysql.pythonanywhere-services.com',
+        'ENGINE': env("DB_ENGINE"),
+        'NAME': env("DB_NAME"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'USER': env("DB_USER"),
+        'HOST': env("DB_HOST"),
+        'PORT': env("DB_PORT")
     }
 }
 
@@ -154,8 +145,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = (str(BASE_DIR.joinpath('media')))
@@ -165,7 +156,7 @@ MEDIA_ROOT = (str(BASE_DIR.joinpath('media')))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ------ django-allauth --------
+# django-allauth
 AUTHENTICATION_BACKENDS = [
 
     # Needed to login by username in Django admin, regardless of `allauth`
