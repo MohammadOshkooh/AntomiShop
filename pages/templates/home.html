@@ -18,7 +18,7 @@
             <div class="shipping_inner">
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="{% static '../../static/img/about/shipping1.png' %}" alt="">
+                        <img src="{% static 'img/about/shipping1.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>ارسال رایگان</h4>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="{% static '../../static/img/about/shipping2.png' %}" alt="">
+                        <img src="{% static 'img/about/shipping2.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>ارسال رایگان</h4>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="{% static '../../static/img/about/shipping3.png' %}" alt="">
+                        <img src="{% static 'img/about/shipping3.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>ارسال رایگان</h4>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="{% static '../../static/img/about/shipping4.png' %}" alt="">
+                        <img src="{% static 'img/about/shipping4.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>ارسال رایگان</h4>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="single_shipping">
                     <div class="shipping_icone">
-                        <img src="{% static '../../static/img/about/shipping5.png' %}" alt="">
+                        <img src="{% static 'img/about/shipping5.png' %}" alt="">
                     </div>
                     <div class="shipping_content">
                         <h4>ارسال رایگان</h4>
@@ -82,7 +82,7 @@
                                 </h4>
                             </div>
                             <div class="categories_product_thumb">
-                                <a href="shop.html"><img src="assets/img/s-product/category2.jpg" alt=""></a>
+                                <a href="{% url 'shop:product_list' %}"><img src="{% static 'img/s-product/category2.jpg' %}" alt=""></a>
                             </div>
                         </div>
                     {% endfor %}
@@ -125,7 +125,7 @@
                 <div class="col-lg-6 col-md-6">
                     <figure class="single_banner">
                         <div class="banner_thumb">
-                            <a href="{% url 'shop:product_list' %}../../static/img/bg/banner4.jpg' %}" alt=""></a>
+                            <a href="{% url 'shop:product_list' %}img/bg/banner4.jpg' %}" alt=""></a>
                         </div>
                     </figure>
                 </div>
@@ -133,7 +133,7 @@
                     <figure class="single_banner">
                         <div class="banner_thumb">
                             <a href="{% url 'shop:product_list' %}"><img
-                                    src="{% static '../../static/img/bg/banner4.jpg' %}" alt=""></a>
+                                    src="{% static 'img/bg/banner4.jpg' %}" alt=""></a>
                         </div>
                     </figure>
                 </div>
@@ -172,7 +172,7 @@
                                         <div class="product_content">
                                             <div class="product_content_inner">
                                                 <h4 class="product_name"><a
-                                                        href="product-countdown.html">{{ product.name }}</a>
+                                                        href="#">{{ product.name }}</a>
                                                 </h4>
                                                 <h5 style="color: darkred">{{ product.get_discount }} درصد
                                                     تخفیف</h5>
@@ -214,7 +214,7 @@
                     <figure class="single_banner">
                         <div class="banner_thumb">
                             <a href="{% url 'shop:product_list' %}"><img
-                                    src="{% static '../../static/img/bg/banner6.jpg' %}" alt=""></a>
+                                    src="{% static 'img/bg/banner6.jpg' %}" alt=""></a>
                         </div>
                     </figure>
                 </div>
@@ -222,7 +222,7 @@
                     <figure class="single_banner">
                         <div class="banner_thumb">
                             <a href="{% url 'shop:product_list' %}"><img
-                                    src="{% static '../../static/img/bg/banner7.jpg' %}" alt=""></a>
+                                    src="{% static 'img/bg/banner7.jpg' %}" alt=""></a>
                         </div>
                     </figure>
                 </div>
@@ -230,7 +230,7 @@
                     <figure class="single_banner">
                         <div class="banner_thumb">
                             <a href="{% url 'shop:product_list' %}"><img
-                                    src="{% static '../../static/img/bg/banner8.jpg' %}" alt=""></a>
+                                    src="{% static 'img/bg/banner8.jpg' %}" alt=""></a>
                         </div>
                     </figure>
                 </div>

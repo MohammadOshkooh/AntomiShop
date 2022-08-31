@@ -1,5 +1,5 @@
 {% extends 'base/main.html' %}
-
+{% load static %}
 {% block content %}
 
 <!--breadcrumbs area start-->
@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <figure>
                         <div class="about_thumb">
-                            <img src="assets/img/about/about1.jpg" alt="">
+                            <img src="{% static 'img/about/about1.jpg' %}" alt="">
                         </div>
                         <figcaption class="about_content">
                             <h1>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
@@ -39,7 +39,7 @@
                                 زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
                                 نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی</p>
                             <div class="about_signature">
-                                <img src="assets/img/about/about-us-signature.png" alt="">
+                                <img src="{% static 'img/about/about-us-signature.png'%}" alt="">
                             </div>
                         </figcaption>
                     </figure>
@@ -49,12 +49,12 @@
         <!--about section end-->
 
         <!--chose us area start-->
-        <div class="choseus_area" data-bgimg="assets/img/about/about-us-policy-bg.jpg">
+        <div class="choseus_area" data-bgimg="{% static 'img/about/about-us-policy-bg.jpg'%}">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="single_chose">
                         <div class="chose_icone">
-                            <img src="assets/img/about/About_icon1.png" alt="">
+                            <img src="{% static 'img/about/About_icon1.png'%}" alt="">
                         </div>
                         <div class="chose_content">
                             <h3>طراحی خلاقانه</h3>
@@ -67,7 +67,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="single_chose">
                         <div class="chose_icone">
-                            <img src="assets/img/about/About_icon2.png" alt="">
+                            <img src="{% static 'img/about/About_icon2.png'%}" alt="">
                         </div>
                         <div class="chose_content">
                             <h3>100% ضمانت بازگشت وجه</h3>
@@ -80,7 +80,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="single_chose">
                         <div class="chose_icone">
-                            <img src="assets/img/about/About_icon3.png" alt="">
+                            <img src="{% static 'img/about/About_icon3.png'%}" alt="">
                         </div>
                         <div class="chose_content">
                             <h3>پشتیبانی 24 ساعته</h3>
@@ -102,7 +102,7 @@
                     <article class="single_gallery_section">
                         <figure>
                             <div class="gallery_thumb">
-                                <img src="assets/img/about/about2.jpg" alt="">
+                                <img src="{% static 'img/about/about2.jpg'%}" alt="">
                             </div>
                             <figcaption class="about_gallery_content">
                                 <h3>ما چکار می کنیم؟</h3>
@@ -117,7 +117,7 @@
                     <article class="single_gallery_section">
                         <figure>
                             <div class="gallery_thumb">
-                                <img src="assets/img/about/about3.jpg" alt="">
+                                <img src="{% static 'img/about/about3.jpg'%}" alt="">
                             </div>
                             <figcaption class="about_gallery_content">
                                 <h3>ماموریت ما</h3>
@@ -132,7 +132,7 @@
                     <article class="single_gallery_section">
                         <figure>
                             <div class="gallery_thumb">
-                                <img src="assets/img/about/about4.jpg" alt="">
+                                <img src="{% static 'img/about/about4.jpg'%}" alt="">
                             </div>
                             <figcaption class="about_gallery_content">
                                 <h3>تاریخچه ما</h3>
@@ -260,7 +260,7 @@
                             <div class="testimonial-wrap-two text-center">
                                 <div class="quote-container">
                                     <div class="quote-image">
-                                        <img src="assets/img/about/testimonial1.jpg" alt="">
+                                        <img src="{% static 'img/about/testimonial1.jpg'%}" alt="">
                                     </div>
                                     <div class="testimonials-text">
                                         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
@@ -277,7 +277,7 @@
                             <div class="testimonial-wrap-two text-center">
                                 <div class="quote-container">
                                     <div class="quote-image">
-                                        <img src="assets/img/about/testimonial2.jpg" alt="">
+                                        <img src="{% static 'img/about/testimonial2.jpg'%}" alt="">
                                     </div>
                                     <div class="testimonials-text">
                                         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
@@ -293,7 +293,7 @@
                             <div class="testimonial-wrap-two text-center">
                                 <div class="quote-container">
                                     <div class="quote-image">
-                                        <img src="assets/img/about/testimonial3.jpg" alt="">
+                                        <img src="{% static 'img/about/testimonial3.jpg'%}" alt="">
                                     </div>
                                     <div class="testimonials-text">
                                         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از

@@ -40,7 +40,7 @@
                                         <ul class="widget_dropdown_categories" style="display:none;">
 
                                             {% for child in category.child.all %}
-                                                {% include 'shop/base/_productCategory.html' %}
+                                                {% include 'shop/include/product_category.html' %}
                                             {% endfor %}
                                         </ul>
                                     </li>
@@ -76,7 +76,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="shop_banner_thumb">
-                                    <img src="{% static '../../../static/img/bg/banner16.jpg' %}" alt="">
+                                    <img src="{% static 'img/bg/banner16.jpg' %}" alt="">
                                 </div>
                             </div>
                         </div>

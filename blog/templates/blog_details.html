@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
                                     <div class="blog_thumb">
-                                        <img src="{% static '../../static/img/blog/blog-big1.jpg' %}" alt="">
+                                        <img src="{% static 'img/blog/blog-big1.jpg' %}" alt="">
                                     </div>
                                     <figcaption class="blog_content">
                                         <div class="post_content">
@@ -68,7 +68,7 @@
                                 {% for parent in comment_main_parents %}
                                     <div class="comment_list">
                                         <div class="comment_thumb">
-                                            <img src="{% static 'img/blog/../../static/img/blog/comment3.png.jpg' %}"
+                                            <img src="{% static 'img/blog/comment3.png.jpg' %}"
                                                  alt="">
                                         </div>
                                         <div class="comment_content">
@@ -94,7 +94,7 @@
                                     {% for comment in parent.get_all_children %}
                                         <div class="comment_list list_two">
                                             <div class="comment_thumb">
-                                                <img src="{% static 'img/blog/../../static/img/blog/comment3.png.jpg' %}"
+                                                <img src="{% static 'img/blog/comment3.png.jpg' %}"
                                                      alt="">
                                             </div>
                                             <div class="comment_content">

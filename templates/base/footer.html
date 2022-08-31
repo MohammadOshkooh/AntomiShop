@@ -49,10 +49,10 @@
                         </div>
                         <div class="app_img">
                             <figure class="app_img">
-                                <a href="#"><img src={% static '../../static/img/icon/icon-appstore.png' %} alt=""></a>
+                                <a href="#"><img src={% static '/img/icon/icon-appstore.png' %} alt=""></a>
                             </figure>
                             <figure class="app_img">
-                                <a href="#"><img src="{% static '../../static/img/icon/icon-googleplay.png' %}" alt=""></a>
+                                <a href="#"><img src="{% static 'img/icon/icon-googleplay.png' %}" alt=""></a>
                             </figure>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="footer_menu">
                             <ul>
                                 <li><a href="{% url 'accounts:dashboard' request.user.pk %}">حساب کاربری</a></li>
-                                <li><a href="cart.html">سبد خرید</a></li>
+                                <li><a href="{% url 'cart:cart' %}">سبد خرید</a></li>
                                 <li><a href="{% url 'shop:favorites_list' %}">علاقه‌مندی‌ها</a></li>
                             </ul>
                         </div>
@@ -86,7 +86,7 @@
                         <div class="footer_contact">
                             <div class="footer_contact_inner">
                                 <div class="contact_icone">
-                                    <img src="assets/img/icon/icon-phone.png" alt="">
+                                    <img src="{% static 'img/icon/icon-phone.png' %}" alt="">
                                 </div>
                                 <div class="contact_text">
                                     <p>تلفن تماس 24 ساعته: <br> <strong class="ltr-text">(+98) 123 456 789</strong></p>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="footer_payment text-right">
-                        <img src="{% static '../../static/img/icon/payment.png' %}" alt="">
+                        <img src="{% static 'img/icon/payment.png' %}" alt="">
                     </div>
                 </div>
             </div>
@@ -136,28 +136,28 @@
                                     <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                         <div class="modal_tab_img">
                                             <a href="#"><img
-                                                    src="{% static '../../static/img/product/productbig2.jpg' %}"
+                                                    src="{% static 'img/product/productbig2.jpg' %}"
                                                     alt=""></a>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab2" role="tabpanel">
                                         <div class="modal_tab_img">
                                             <a href="#"><img
-                                                    src="{% static '../../static/img/product/productbig3.jpg' %}"
+                                                    src="{% static 'img/product/productbig3.jpg' %}"
                                                     alt=""></a>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab3" role="tabpanel">
                                         <div class="modal_tab_img">
                                             <a href="#"><img
-                                                    src="{% static '../../static/img/product/productbig4.jpg' %}"
+                                                    src="{% static 'img/product/productbig4.jpg' %}"
                                                     alt=""></a>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="tab4" role="tabpanel">
                                         <div class="modal_tab_img">
                                             <a href="#"><img
-                                                    src="{% static '../../static/img/product/productbig5.jpg' %}"
+                                                    src="{% static 'img/product/productbig5.jpg' %}"
                                                     alt=""></a>
                                         </div>
                                     </div>
@@ -167,25 +167,25 @@
                                         <li>
                                             <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab"
                                                aria-controls="tab1" aria-selected="false"><img
-                                                    src="{% static '../../static/img/product/product1.jpg' %}"
+                                                    src="{% static 'img/product/product1.jpg' %}"
                                                     alt=""></a>
                                         </li>
                                         <li>
                                             <a class="nav-link" data-toggle="tab" href="#tab2" role="tab"
                                                aria-controls="tab2" aria-selected="false"><img
-                                                    src="{% static '../../static/img/product/product6.jpg' %}"
+                                                    src="{% static 'img/product/product6.jpg' %}"
                                                     alt=""></a>
                                         </li>
                                         <li>
                                             <a class="nav-link button_three" data-toggle="tab" href="#tab3" role="tab"
                                                aria-controls="tab3" aria-selected="false"><img
-                                                    src="{% static '../../static/img/product/product9.jpg' %}"
+                                                    src="{% static 'img/product/product9.jpg' %}"
                                                     alt=""></a>
                                         </li>
                                         <li>
                                             <a class="nav-link" data-toggle="tab" href="#tab4" role="tab"
                                                aria-controls="tab4" aria-selected="false"><img
-                                                    src="{% static '../../static/img/product/product14.jpg' %}" alt=""></a>
+                                                    src="{% static 'img/product/product14.jpg' %}" alt=""></a>
                                         </li>
 
                                     </ul>

@@ -1,4 +1,5 @@
 {% load product_tag %}
+{% load static %}
 {% load crispy_forms_filters %}
 <div class="tab-pane fade" id="reviews" role="tabpanel">
     <div class="reviews_wrapper">
@@ -7,7 +8,7 @@
         {% for comment in comments %}
             <div class="reviews_comment_box">
                 <div class="comment_thmb">
-                    <img src="assets/img/blog/comment2.jpg" alt="">
+                    <img src="{% static 'img/blog/comment2.jpg' %}" alt="">
                 </div>
                 <div class="comment_text">
                     <div class="reviews_meta">
@@ -49,16 +50,6 @@
 
         <div class="product_review_form">
             <form action="" method="post">
-                {#                <div class="product_rating mb-10">#}
-                {#                    <h3>امتیاز شما</h3>#}
-                {#                    <ul>#}
-                {#                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>#}
-                {#                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>#}
-                {#                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>#}
-                {#                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>#}
-                {#                        <li><a href="#"><i class="ion-android-star-outline"></i></a></li>#}
-                {#                    </ul>#}
-                {#                </div>#}
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-12">

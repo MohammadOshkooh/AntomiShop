@@ -43,11 +43,9 @@
                 </div>
             </div>
             <div class="add_to_cart">
-                {#                <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>#}
                 <form action="" method="post">
                     {% csrf_token %}
                     <label>تعداد</label>
-                    {#                    {{ add_to_cart_form.quantity }}#}
                     <input type="hidden" name="quantity" value="1">
                     <button class="button" type="submit">افزودن به سبد</button>
                 </form>
@@ -73,17 +71,17 @@
             <div class="product_desc">
                 <p>{{ product.name }}</p>
             </div>
-            <div class="add_to_cart">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <label>تعداد</label>
-                    {{ add_to_cart_form.quantity }}
-                    <button class="button" type="submit">افزودن به سبد</button>
-                </form>
-            </div>
+{#            <div class="add_to_cart">#}
+{#                <form action="" method="post">#}
+{#                    {% csrf_token %}#}
+{#                    <label>تعداد</label>#}
+{#                    {{ add_to_cart_form.quantity }}#}
+{#                    <button class="button" type="submit">افزودن به سبد</button>#}
+{#                </form>#}
+{#            </div>#}
             <div class="action_links">
                 <ul>
-                    <li class="wishlist"><a href="wishlist.html"
+                    <li class="wishlist"><a href="{% url 'shop:favorites_list' %}"
                                             title="افزودن به علاقه‌مندی‌ها"><i
                             class="ion-android-favorite-outline"></i> افزودن به
                         علاقه‌مندی‌ها</a></li>

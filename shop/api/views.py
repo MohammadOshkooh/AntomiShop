@@ -6,16 +6,6 @@ from .serializers import ProductSerializers, ProductCategorySerializer
 from shop.models import Product, ProductCategory
 
 
-# class ProductList(ListAPIView):
-#     queryset = Product.objects.filter(availability=True)
-#     serializer_class = ProductSerializers
-
-
-# class ProductDetail(RetrieveUpdateDestroyAPIView):
-#     queryset = Product.objects.filter(availability=True)
-#     serializer_class = ProductSerializers
-
-
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.filter(availability=True)
     serializer_class = ProductSerializers
@@ -36,5 +26,5 @@ class ProductCategoryViewSet(ModelViewSet):
         if self.action in ['list', 'retrieve']:
             permission_class = [AllowAny]
         else:
-            permissions_class = [IsAdminUser]
-        return [permission() for permission in permissions_class]
+            permission_class = [IsAdminUser]
+        return [permission() for permission in permission_class]
